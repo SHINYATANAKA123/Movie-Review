@@ -15,5 +15,10 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show] do
     resource :interest, only: [:create, :destroy]
   end
+  
+  resources :reviews do
+    resource :good, only: [:create, :destroy] # /reviews/:review_id/good ①review_idをURLに持たせることでgoodのsave時などでreview_idを取得しやすいのでネストにしている。②/:good_idは不要(showページ不要)なのでresource。
+    resource :bad, only: [:create, :destroy] # /reviews/:review_id/bad ①review_idをURLに持たせることでbadのsave時などでreview_idを取得しやすいのでネストにしている。②/:bad_idは不要(showページ不要)なのでresource。
+  end
 
 end
