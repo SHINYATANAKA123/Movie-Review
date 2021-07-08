@@ -1,2 +1,26 @@
-<h1>Movies#index</h1>
-<p>Find me in app/views/movies/index.html.erb</p>
+<h2>人気の映画 - <%= @popular_movie.total_results %> movies</h2>
+
+<ul class="movies-list">
+	<% @popular_movie.results.each do |movie| %>
+		<% if movie %>
+			<li class="movie-<%= movie.id %>">
+            	<a href="/movies/<%= movie.id %>" title="<%= movie.original_title %>">
+            		<% if movie.poster_path %>
+            			<%= image_tag('https://image.tmdb.org/t/p/w300' + movie.poster_path, class: 'img-thumbnail') %>
+            		<% else %>
+            			<%= image_tag('https://dummyimage.com/300x450/000/fff', class: 'fallback-thumbnail') %>
+            		<% end %>
+            		<div class="movie-info">
+            			<h3 class="movie-title"><%= movie.title %></h3>
+            			<span class="movie-release">公開日: <%= movie.release_date %></span>
+            			<span class="movie-genres">ジャンル: <%= get_genre(movie.genre_ids) %></span>
+        		</div>
+        	</a>
+        </li>
+		<% end %>
+	<% end %>
+</ul>
+
+<span class="pagination" data-pagination-endpoint="/movies/pagination/" data-pagination-pages="<%= @popular_movie.total_pages %>">
+	Loading...
+</span>
