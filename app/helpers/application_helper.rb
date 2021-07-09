@@ -1,6 +1,6 @@
 module ApplicationHelper
  def get_genre(genre_ids)
-		return if genre_ids.empty? 
+		return if genre_ids.empty?
 		genres = []
 
 		genre_ids.each do |genre_id|

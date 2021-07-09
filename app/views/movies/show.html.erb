@@ -25,26 +25,52 @@
     <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
        <div class="modal-dialog" role="document">
   			<div class="modal-content">
-    		<%= form_with(model: @review, local: true) do |form| %>
-    			<div class="modal-header">
-      			<h5 class="modal-title">レビューする</h5>
-      			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        			<span aria-hidden="true">&times;</span>
-      			</button>
-    			</div>
-    		<div class="modal-body">
-      		<div class="form-group field">
-        		<%= form.label :本文 , class: "form-control-label"%>
-        		<%= form.text_field :body, class: "form-control" %>
-      		</div>
-    		</div>
-    		<div class="modal-footer actions">
-      			<%= form.submit class: "btn btn-primary"%>
-    		</div>
-    	<% end %>
-  	 </div>
+		    		<%= form_with(model: @review, local: true) do |form| %>
+		    		   <%= form.hidden_field :movie_id, :value => @movie.id %>
+	   				   <%= form.hidden_field :title, :value => @movie.title %>
+					   <%= form.hidden_field :poster_path, :value => @movie.poster_path %>
+		    			<div class="modal-header">
+		      			<h5 class="modal-title">レビューする</h5>
+		      			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        			<span aria-hidden="true">&times;</span>
+		      			</button>
+		    			</div>
+		    		<div class="modal-body">
+		    		<div class="form-group" id="star">
+						 <%= form.label :total_score %>
+						 <%= form.hidden_field :total_score, id: :review_star %>
+				    </div>
+		      		<div class="form-group field">
+		        		<%= form.label :本文 , class: "form-control-label"%>
+		        		<%= form.text_area :body, size: "40x10", class: "form-control" %>
+		      		</div>
+		    		</div>
+		    		<div class="modal-footer actions">
+		      			<%= form.submit "書き込む", class: "btn btn-primary"%>
+		    		</div>
+		    	<% end %>
+		    	 <script>
+				   $('#star').raty({
+				   size: 36,
+				   starOff: '<%= asset_path('star-off.png') %>',
+				   starOn: '<%= asset_path('star-on.png') %>',
+				   starHalf: '<%= asset_path('star-half.png') %>',
+				   scoreName: 'review[total_score]',
+				   half: true,
+				   });
+				 </script>
+  	 		</div>
 		</div>
  	</div>
 </div>
 
-
+<h3 class="page-header">レビュー欄</h3>
+  <% @reviews.each do |r|%>
+  <div class="well center-block" style="width:60%;">
+    <h4>ユーザー名：<%= r.user.name %></h4>
+    </div><!--star-rating-icon-->
+    <%= r.title %>
+    <%= image_tag('https://image.tmdb.org/t/p/w500' + r.poster_path, class: 'img-thumbnail') %>
+    <p><%= r.body %></p>
+  </div>
+  <% end %>
