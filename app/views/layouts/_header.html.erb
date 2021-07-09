@@ -38,14 +38,15 @@
             <span>タイムライン</span>
             <% end %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                設定
-              </a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">設定</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">マイページ</a>
                 <a class="dropdown-item" href="#">プロフィール編集</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">ログアウト</a>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link faa-parent animated-hover' do  %>
+                <i class="fas fa-sign-out-alt fa-fw faa-wrench"></i>
+                <span>Log Out</span>
+                <% end %>
               </div>
             </li>
           <% else %>
