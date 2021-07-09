@@ -8,15 +8,15 @@ class MoviesController < ApplicationController
   end
 
   def show
+
     @movie = Tmdb::Movie.detail(params[:id])
-		@images = Tmdb::Movie.posters(params[:id])
+    @movie_id = params[:id]
+    @images = Tmdb::Movie.posters(params[:id])
+
+		@review = Review.new
+		@reviews = Review.where(movie_id: params[:id]).page(params[:page]).reverse_order
   end
 
-  def pagination
-		page = params[:page].nil? ? 1 : params[:page]
-		region = params[:id].nil? ? 'us' : params[:region]
-		upcoming = Tmdb::Movie.upcoming({page: page, region: region}).results
-		render partial: 'movies/movie', collection: upcoming, locals: {movie: upcoming}
-	end
+
 
 end
