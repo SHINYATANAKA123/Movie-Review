@@ -168,7 +168,7 @@ a {
   overflow: hidden;
 }
 
-.posts-show-item img {
+.post-user-name img {
   width: 60px;
   height: 60px;
   border-radius: 40%;
@@ -207,13 +207,21 @@ a {
 }
 
 .post-menus {
-  float: right;
+  text-align: right;
 }
 
 .post-menus a, .post-menus input {
   color: #8899a6;
   text-decoration: underline;
   font-size: 14px;
+}
+
+.content-left {
+  float: left;
+}
+
+.content-right {
+  float: right;
 }
 
 /* posts/new ================================ */
