@@ -69,7 +69,7 @@
 
   <div class="main posts-index">
   <div class="container">
-  	<h3 class="page-header">レビュー欄</h3>
+  	<h3 class="page-header"><%= "「#{@movie.title}」に投稿された評価・感想"%></h3>
     <% @reviews.each do |review| %>
       <div class="posts-index-item">
         <div class="post-left">
@@ -82,6 +82,22 @@
           <div class="post-time">
         		<%= review.created_at %>
       		</div>
+      		<div class="post-raty">
+      		 	<div id="star-rate-<%= review.id %>">
+		          <script>
+		          $('#star-rate-<%= review.id %>').raty({
+		            size: 36,
+		            starOff:  '<%= asset_path('star-off.png') %>',
+		            starOn : '<%= asset_path('star-on.png') %>',
+		            starHalf: '<%= asset_path('star-half.png') %>',
+		            half: true,
+		            readOnly: true,
+		            score: <%= review.total_score %>,
+		          });
+		          </script>
+          		<span><%= review.total_score %> </span>
+          	</div>
+          </div>
           <%= link_to(review.body, "/reviews/#{review.id}") %>
         </div>
       </div>
