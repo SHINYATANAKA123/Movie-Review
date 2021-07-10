@@ -1,56 +1,83 @@
-<section id="detail" >
-	<div class="container">
-	<div class="movie-content row">
-		<div class="content-left">
-			<h1><%= @review.title %></h1>
-			<span class="movie-release">公開日:</span>
-			<span class="movie-genres">ジャンル: </span>
 
-		</div>
-
-		<div class="content-right">
-		  <%= image_tag('https://image.tmdb.org/t/p/w185' + @review.poster_path, class: 'img-thumbnail') %>
-
-			<div class="movie-overview">
-
-			</div>
-			<button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">レビューする</button>
-		</div>
-		<div class="content-bottom">
-		  <span>aaaaaaaaaaaaaa</span>
-		</div>
-		<div class="content-bottom-right">
-		  <span>aaaaaaaaaaaaaa</span>
-		</div>
-	</div>
-	</div>
-</section>
-
-<div class="main posts-show">
+      <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
-      <div class="content-left">
       <div class="post-user-name">
         <img src=<%= @review.user.image_id %> >
-        <%= link_to("#{@review.title}の#{@user.name}のレビュー・感想・評価", "/users/#{@user.id}") %>
+        <%= link_to"#{@review.title}の#{@user.name}のレビュー・感想・評価", "/users/#{@user.id}"  %>
       </div>
-      <p>
-        <%= @review.body %>
-      </p>
       <div class="post-time">
         <%= @review.created_at %>
       </div>
-     </div>
-      <div class="content-right">
-        <%= image_tag('https://image.tmdb.org/t/p/w154' + @review.poster_path, class: 'img-thumbnail') %>
+      	<div class="post-raty">
+      		 	<div id="star-rate-<%= @review.id %>">
+		          <script>
+		          $('#star-rate-<%= @review.id %>').raty({
+		            size: 36,
+		            starOff:  '<%= asset_path('star-off.png') %>',
+		            starOn : '<%= asset_path('star-on.png') %>',
+		            starHalf: '<%= asset_path('star-half.png') %>',
+		            half: true,
+		            readOnly: true,
+		            score: <%= @review.total_score %>,
+		          });
+		          </script>
+          		<span><%= @review.total_score %> </span>
+          	</div>
+          </div>
+      <p>
+        <%= safe_join(@review.body.split("\n"),tag(:br)) %>
+      </p>
 
       <% if @review.user_id == current_user.id %>
         <div class="post-menus">
-          <%= link_to("編集", "/posts/#{@review.id}/edit") %>
-          <%= link_to("削除", "/posts/#{@review.id}/destroy", {method: "post"}) %>
-        </div>
+          <%= link_to("編集", "/reviews/#{@review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
+          <%= link_to("削除", "/reviews/#{@review.id}", {method: "delete"}) %>
         </div>
       <% end %>
-      </div>
     </div>
   </div>
+</div>
+
+
+	    <!-- ボタン・リンククリック後に表示される画面の内容 -->
+	    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	       <div class="modal-dialog" role="document">
+	  			<div class="modal-content">
+			    		<%= form_with(model: @review, local: true) do |form| %>
+			    		   <%= form.hidden_field :movie_id, :value => @review.movie_id %>
+		   				   <%= form.hidden_field :title, :value => @review.title %>
+						   <%= form.hidden_field :poster_path, :value => @review.poster_path %>
+			    			<div class="modal-header">
+			      			<h5 class="modal-title">レビュ-を編集する</h5>
+			      			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        			<span aria-hidden="true">&times;</span>
+			      			</button>
+			    			</div>
+			    		<div class="modal-body">
+			    		<div class="form-group" id="star">
+							 <%= form.label :total_score %>
+							 <%= form.hidden_field :total_score, id: :review_star %>
+					    </div>
+			      		<div class="form-group field">
+			        		<%= form.label :本文 , class: "form-control-label"%>
+			        		<%= form.text_area :body, size: "40x10", class: "form-control" %>
+			      		</div>
+			    		</div>
+			    		<div class="modal-footer actions">
+			      			<%= form.submit "更新する", class: "btn btn-primary"%>
+			    		</div>
+			    	<% end %>
+			    	 <script>
+					   $('#star').raty({
+					   size: 36,
+					   starOff: '<%= asset_path('star-off.png') %>',
+					   starOn: '<%= asset_path('star-on.png') %>',
+					   starHalf: '<%= asset_path('star-half.png') %>',
+					   scoreName: 'review[total_score]',
+					   half: true,
+					   });
+					 </script>
+	  	 		</div>
+			</div>
+	 	</div>
