@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  
+  mount_uploader :image_id, ImageUploader
+
   has_many :goods
   has_many :bads
 
@@ -16,7 +17,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
 
   attachment :image
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
