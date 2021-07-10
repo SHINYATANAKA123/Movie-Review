@@ -1,10 +1,38 @@
+<section id="detail" >
+	<div class="container">
+	<div class="movie-content row">
+		<div class="content-left">
+			<h1><%= @review.title %></h1>
+			<span class="movie-release">公開日:</span>
+			<span class="movie-genres">ジャンル: </span>
+
+		</div>
+
+		<div class="content-right">
+		  <%= image_tag('https://image.tmdb.org/t/p/w185' + @review.poster_path, class: 'img-thumbnail') %>
+
+			<div class="movie-overview">
+
+			</div>
+			<button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">レビューする</button>
+		</div>
+		<div class="content-bottom">
+		  <span>aaaaaaaaaaaaaa</span>
+		</div>
+		<div class="content-bottom-right">
+		  <span>aaaaaaaaaaaaaa</span>
+		</div>
+	</div>
+	</div>
+</section>
+
 <div class="main posts-show">
   <div class="container">
-    <div class="content-left">
     <div class="posts-show-item">
+      <div class="content-left">
       <div class="post-user-name">
         <img src=<%= @review.user.image_id %> >
-        <%= link_to(@user.name, "/users/#{@user.id}") %>
+        <%= link_to("#{@review.title}の#{@user.name}のレビュー・感想・評価", "/users/#{@user.id}") %>
       </div>
       <p>
         <%= @review.body %>
@@ -12,17 +40,17 @@
       <div class="post-time">
         <%= @review.created_at %>
       </div>
-      </div>
-      <div clas="content-right">
+     </div>
+      <div class="content-right">
         <%= image_tag('https://image.tmdb.org/t/p/w154' + @review.poster_path, class: 'img-thumbnail') %>
-      </div>
 
       <% if @review.user_id == current_user.id %>
         <div class="post-menus">
           <%= link_to("編集", "/posts/#{@review.id}/edit") %>
           <%= link_to("削除", "/posts/#{@review.id}/destroy", {method: "post"}) %>
         </div>
+        </div>
       <% end %>
+      </div>
     </div>
   </div>
-</div>
