@@ -73,13 +73,16 @@
     <% @reviews.each do |review| %>
       <div class="posts-index-item">
         <div class="post-left">
-          <img src="<%= "/user_images/#{review.user.image_id}" %>">
+        　<img src=<%= review.user.image_id %> >
         </div>
         <div class="post-right">
           <div class="post-user-name">
-            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+            <%= link_to("#{review.user.name}の感想・評価", "/users/#{review.user.id}") %>
           </div>
-          <%= link_to(post.content, "/posts/#{post.id}") %>
+          <div class="post-time">
+        		<%= review.created_at %>
+      		</div>
+          <%= link_to(review.body, "/reviews/#{review.id}") %>
         </div>
       </div>
     <% end %>
