@@ -98,7 +98,9 @@
           		<span><%= review.total_score %> </span>
           	</div>
           </div>
-          <%= link_to(review.body, "/reviews/#{review.id}") %>
+          <%= link_to "/reviews/#{review.id}" do %>
+          <%= safe_join(review.body.split("\n"),tag(:br)) %>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -207,7 +207,7 @@ a {
 }
 
 .post-menus {
-  text-align: right;
+  float: right;
 }
 
 .post-menus a, .post-menus input {
@@ -216,12 +216,8 @@ a {
   font-size: 14px;
 }
 
-.content-left {
-  float: left;
-}
-
-.content-right {
-  float: right;
+.post-raty{
+	
 }
 
 /* posts/new ================================ */
@@ -236,8 +232,4 @@ a {
 .posts-new textarea::-webkit-input-placeholder {
   font-size: 24px;
   opacity: 0.5;
-}
-
-.post-raty {
-white-space: nowrap;
 }
