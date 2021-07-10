@@ -1,2 +1,28 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="main posts-show">
+  <div class="container">
+    <div class="content-left">
+    <div class="posts-show-item">
+      <div class="post-user-name">
+        <img src=<%= @review.user.image_id %> >
+        <%= link_to(@user.name, "/users/#{@user.id}") %>
+      </div>
+      <p>
+        <%= @review.body %>
+      </p>
+      <div class="post-time">
+        <%= @review.created_at %>
+      </div>
+      </div>
+      <div clas="content-right">
+        <%= image_tag('https://image.tmdb.org/t/p/w154' + @review.poster_path, class: 'img-thumbnail') %>
+      </div>
+
+      <% if @review.user_id == current_user.id %>
+        <div class="post-menus">
+          <%= link_to("編集", "/posts/#{@review.id}/edit") %>
+          <%= link_to("削除", "/posts/#{@review.id}/destroy", {method: "post"}) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
