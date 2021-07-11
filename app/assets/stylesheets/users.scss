@@ -47,3 +47,35 @@
   display: table-cell;
   vertical-align: middle;
 }
+
+.card {
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
+}
+
+.users-index-card {
+  background-color: white;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+}
+
+
+.count-box{
+  display: inline-block;
+}
+
+.card-label{
+  display: block;
+}
+
+.card-count{
+  display: block;
+}
+
+.follow-box{
+  display: inline-block;
+}
