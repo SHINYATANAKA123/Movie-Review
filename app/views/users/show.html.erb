@@ -1,2 +1,56 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="main user-show">
+  <div class="container">
+    <div class="user-show-card">
+      <div class="card-body">
+        <p class="card-text">
+          <div class="main user-show">
+              <div class="user">
+                <div><img src="<%= @user.image_id %>"></div>
+                <div class="user-name"><%= @user.name %></div>
+                 <% if @user.birthday.present? %>
+                  <p class="user-old"><%= age(@user.birthday) %>歳</p>
+                 <% end %>
+                <p class="user-intro"><%= @user.intro%></p>
+                <p><%= @user.email %></p>
+                <% if @user.id == current_user.id %>
+                  <%= link_to("編集", "/users/#{@user.id}/edit") %>
+                <% end %>
+              </div>
+        </div>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </p>
+    </div>
+    <ul class="nav nav-tabs justify-content-center" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">follower</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">following</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">good</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">bad</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item5-tab" data-toggle="tab" href="#item5" role="tab" aria-controls="item5" aria-selected="false"><%= @user.name%>さんのレビュー</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="item6-tab" data-toggle="tab" href="#item6" role="tab" aria-controls="item6" aria-selected="false"><%= @user.name%>さんの観たいリスト</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class=container>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">This is a text of item#1.</div>
+      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">This is a text of item#2.</div>
+      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
+      <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">This is a text of item#4.</div>
+      <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">This is a text of item#5.</div>
+      <div class="tab-pane fade" id="item6" role="tabpanel" aria-labelledby="item6-tab">This is a text of item#6.</div>
+    </div>
+</div>
+
+
