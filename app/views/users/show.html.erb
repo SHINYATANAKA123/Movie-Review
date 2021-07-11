@@ -10,14 +10,22 @@
                  <% if @user.birthday.present? %>
                   <p class="user-old"><%= age(@user.birthday) %>歳</p>
                  <% end %>
-                <p class="user-intro"><%= @user.intro%></p>
+                <p class="user-intro"><%= safe_join(@user.intro.split("\n"),tag(:br))%></p>
                 <p><%= @user.email %></p>
                 <% if @user.id == current_user.id %>
                   <%= link_to("編集", "/users/#{@user.id}/edit") %>
                 <% end %>
               </div>
         </div>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <% if user_signed_in? %>
+        <% if @user != current_user %>
+          <% if user.followed_by?(current_user) %>
+            <%= link_to 'フォロー済み', user_relationships_path(user), class:"btn btn-info btn-sm mb-4", method: :delete, data: {confirm: 'フォローを外してもよろしいですか？'} %>
+          <% else %>
+            <%= link_to 'フォローする', user_relationships_path(user), class:"btn btn-warning btn-sm mb-4", method: :post %>
+          <% end %>
+        <% end %>
+        <% end %>
       </p>
     </div>
     <ul class="nav nav-tabs justify-content-center" role="tablist">
