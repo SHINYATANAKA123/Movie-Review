@@ -25,16 +25,20 @@
           	</div>
           	<div class="rate-number"><%= @review.total_score %></div>
           </div>
-      <p>
+      <p class"review-text">
         <%= safe_join(@review.body.split("\n"),tag(:br)) %>
       </p>
-
+     	<divc class="review_index_card_footer row">
+          <div class="row review_index_good-bad" id="review-#{@review.id}_good">
+           <%= render 'goods/good-bad', review: @review %>
       <% if @review.user_id == current_user.id %>
         <div class="post-menus">
           <%= link_to("編集", "/reviews/#{@review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
           <%= link_to("削除", "/reviews/#{@review.id}", {method: "delete"}) %>
         </div>
       <% end %>
+    </div>
+    </div>
     </div>
   </div>
 </div>
