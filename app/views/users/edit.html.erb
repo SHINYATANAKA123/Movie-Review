@@ -23,10 +23,23 @@
       <%= f.text_area :intro, style:"width: 40%; height: 100px;" %>
     </div>
 
-
+    <div class="field form-group has-icon">
+      <div>プロフィール画像(任意)</div>
+      <div class="user-edit-image">
+        <div class="user-img">
+         <% if @user.image_id? %>
+            <%= image_tag @user.image_id.url, id: :img_prev %>
+         <% else %>
+            <%= image_tag "/assets/no_profile_image.jpg", id: :img_prev %>
+         <% end %>
+         </div>
+         <div class="img-button">
+          <button type="button" class="btn btn-outline-secondary rounded-pill">
+             <%= f.file_field :image_id, id: :user_img, accept: 'image/jpeg,image/gif,image/png' %>
+          </button>
+          </div>
+      </div>
     </div>
-
-
     <div class="actions mx-auto row mt-5">
       <div class="col-md"></div>
       <div class="col-md"><%= f.submit "更新する", class:"btn btn-success" %></div>
@@ -36,3 +49,20 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#user_img").change(function(){
+        readURL(this);
+    });
+  });
+</script>

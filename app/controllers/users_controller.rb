@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-     @user = User.find_by(id: params[:id])
+      @user = User.find_by(id: params[:id])
       @reviews = @user.reviews.page(params[:page]).reverse_order
   end
 
