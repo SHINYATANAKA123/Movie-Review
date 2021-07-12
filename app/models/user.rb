@@ -20,4 +20,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def followed_by?(user)
+    passive_relationships.where(following_id: user.id).exists? #exists?の方がいいかも
+  end
+  
 end
