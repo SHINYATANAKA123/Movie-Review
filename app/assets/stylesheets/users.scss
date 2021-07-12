@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* users/index ================================ */
+.container-user{
+  width: 1500px;
+}
+
 .users-heading {
   font-weight: 300;
   margin: 60px 0 20px;
@@ -49,11 +53,13 @@
 }
 
 .card {
+  height: 350px;
   display: inline-block;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
-  display: table;
+  margin: 0 auto;
+  margin-bottom: 35px;
   width: 100%;
 }
 
