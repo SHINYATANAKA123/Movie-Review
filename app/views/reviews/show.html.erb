@@ -1,5 +1,4 @@
-
-      <div class="main posts-show">
+ <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
       <div class="post-user-name">
@@ -10,8 +9,9 @@
         <%= @review.created_at %>
       </div>
       	<div class="post-raty">
-      		 	<div id="star-rate-<%= @review.id %>">
+      		 	<div id="star-rate-<%= @review.id %>" class="rate-number">
 		          <script>
+		          $('#star-rate-<%= @review.id %>').empty();
 		          $('#star-rate-<%= @review.id %>').raty({
 		            size: 36,
 		            starOff:  '<%= asset_path('star-off.png') %>',
@@ -22,8 +22,8 @@
 		            score: <%= @review.total_score %>,
 		          });
 		          </script>
-          		<span><%= @review.total_score %> </span>
           	</div>
+          	<div class="rate-number"><%= @review.total_score %></div>
           </div>
       <p>
         <%= safe_join(@review.body.split("\n"),tag(:br)) %>
