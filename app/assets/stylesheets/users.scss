@@ -49,6 +49,7 @@
 }
 
 .card {
+  display: inline-block;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
@@ -65,16 +66,29 @@
 
 
 .count-box{
+  font-family: Hiragino Sans, "ヒラギノ角ゴシック", Hiragino Kaku Gothic ProN, "ヒラギノ角ゴ ProN W3", Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   display: inline-block;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 14px;
 }
 
 .card-label{
   display: block;
+  color: #7e7e7e;
+  font-size: 0.7rem;
+  line-height: 1;
 }
 
 .card-count{
   display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
 }
+
+
 
 .follow-box{
   display: inline-block;
