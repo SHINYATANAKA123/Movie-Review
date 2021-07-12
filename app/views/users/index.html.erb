@@ -1,10 +1,10 @@
 <div class="main users-index">
-  <div class="container">
+  <div class="container-fluid">
     <h1 class="users-heading">ユーザー一覧</h1>
-    <div class="row">
+    <div class="row justify-content-around">
     <% @users.each do |user| %>
-  <div class="col-sm-6">
-     <div class="card" style="width: 20rem;">
+  <div class="col-sm-4">
+     <div  class="card" style="width: 20rem;">
 
   <div class="card-body">
     <div class="card-title">
@@ -43,8 +43,12 @@
         <% end %>
       </div>
       <div class="user-intro">
-        <span>紹介文</span>
-    　  <span><%= user.intro %></spanp>
+    　  <div>
+    　     <%= safe_join(user.intro.truncate(50).split("\n"),tag(:br)) %>
+              <% if user.intro.size >= 50 %>
+                <p>続きを読む</p>
+              <% end %>
+    　  </div>
     　</div>
     </div>
   </div>
