@@ -11,4 +11,8 @@ class InterestsController < ApplicationController
     interest.destroy
     redirect_to request.referer, alert: "観たいリストから削除しました"
   end
+  
+  
+   
+
 end
