@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
- 
+
 
   def index
     @popular_movie = Tmdb::Movie.popular
@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
 
 		@review = Review.new
 		@reviews = Review.where(movie_id: params[:id]).page(params[:page]).reverse_order
+
   end
 
 

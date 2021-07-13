@@ -13,8 +13,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-    if @review.save
-      redirect_to request.referer
+    review_count = Review.where(movie_id: @review.movie_id, user_id: current_user.id).count
+    if @review.valid?
+      if review_count < 1
+        @review.save
+        redirect_to request.referer, notice: "レビューを保存しました"
+      else
+        redirect_to request.referer, notice: "レビューの投稿は一度までです"
+      end
     else
       # renderだとパラメータが消えてしまうので、バリデーションメッセージをフラッシュに入れてredirectし、viewで表示させる
       flash[:review_alert] = @review.errors.full_messages.to_s.gsub!(/"/, '').gsub(/\]/, '').gsub(/\[/, '')
