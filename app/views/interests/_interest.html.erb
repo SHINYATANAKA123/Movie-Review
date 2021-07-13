@@ -1,12 +1,12 @@
 <p>観たいリストに追加する</p>
- <% if movie.interest_by?(current_user) %>
-  <%= link_to movie_interest_path(movie), class:"btn btn-light ", method: :delete, remote: true do %>
-    <i class="fas fa-thumbs-up"></i>
-    <%= review.goods.count %>
+ <% if @interests.present? %>
+  <%= link_to "/movie/#{movie.id}/interest", class:"btn btn-light ", method: :delete, remote: true do %>
+    <i class="fas fa-plus-square square-green"></i>
+    <%= @interest_users %>
   <% end %>
  <% else %>
-  <%= link_to movie_interest_path(movie), class:"btn btn-light ", method: :post, remote: true do %>
-    <i class="far fa-thumbs-up"></i>
-    <%= review.goods.count %>
+  <%= link_to "/movie/#{movie.id}/interest", class:"btn btn-light ", method: :post, remote: true do %>
+    <i class="far fa-plus-square"></i>
+    <%= @interest_users %>
    <% end %>
   <% end %>
