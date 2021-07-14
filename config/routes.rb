@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'movies#index'
-  get 'search' => 'search#search'
+  get 'search' => 'searches#search'
   get 'reviews/search' => 'reviews#search'
   get 'users/search' => 'users#search'
 
