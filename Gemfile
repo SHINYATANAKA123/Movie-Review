@@ -75,3 +75,5 @@ gem 'themoviedb-api', '~> 1.3'
 gem 'carrierwave'
 
 gem 'dotenv-rails'
+
+gem 'ransack'

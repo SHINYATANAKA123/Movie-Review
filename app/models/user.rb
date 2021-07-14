@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :image_id, ImageUploader
 
+  enum sex: { '--': 0, 男: 1, 女: 2, その他: 9 }
+
   has_many :goods
   has_many :bads
 
@@ -24,5 +26,5 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).exists? #exists?の方がいいかも
   end
-  
+
 end
