@@ -780,3 +780,8 @@
     return Raty;
   })();
 }));
+
+/*global $*/
+$(function(){
+  setTimeout("$('.auto-hide').fadeOut('slow')", 2000);
+});

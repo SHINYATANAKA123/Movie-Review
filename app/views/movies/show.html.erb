@@ -1,4 +1,4 @@
-<section id="detail" >
+<section id="detail">
 	<div class="container">
 	<div class="movie-content row">
 		<div class="content-left">
@@ -17,7 +17,27 @@
 			<div class="movie-overview">
 				<%= @movie.overview %>
 			</div>
-			<button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">レビューする</button>
+
+          <% if user_signed_in? %>
+			<% if @review_count < 1 %>
+			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
+			<% else %>
+			 <%= link_to edit_review_path(@user_review) do %>
+			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+			 <% end %>
+			<% end %>
+		　<% else %>
+		　 ログインしてレビューをする
+		  <% end %>
+		  
+		  <div class="movie_interest" id="movie-<%= @movie_id %>_interest">
+         <%= render 'interests/interest', movie: @movie %>
+        </div>
+
+
+       
+
+
 		</div>
 
 	    <!-- ボタン・リンククリック後に表示される画面の内容 -->
@@ -49,6 +69,7 @@
 			    		</div>
 			    	<% end %>
 			    	 <script>
+			    	　 $('#star').empty();
 					   $('#star').raty({
 					   size: 36,
 					   starOff: '<%= asset_path('star-off.png') %>',
@@ -102,6 +123,19 @@
           <%= link_to "/reviews/#{review.id}" do %>
           <%= safe_join(review.body.split("\n"),tag(:br)) %>
           <% end %>
+
+          <div class="review_index_card_footer">
+          <div class="review_index_good-bad" id="review-<%= review.id %>_good">
+           <%= render 'goods/good-bad', review: review %>
+          </div>
+      <% if review.user_id == current_user.id %>
+        <div class="post-menus">
+          <%= link_to("編集", "/reviews/#{review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
+          <%= link_to("削除", "/reviews/#{review.id}", {method: "delete"}) %>
+        </div>
+      <% end %>
+
+    </div>
         </div>
       </div>
     <% end %>

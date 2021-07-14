@@ -28,6 +28,12 @@
     </div>
 
     <div class="field form-group">
+      <%= f.label :sex, "性別(任意)" %><br />
+      <%= f.select :sex, User.sexes.keys, :selected=>User.sexes[@user.sex] %>
+    </div>
+
+
+    <div class="field form-group">
       <%= f.label :birthday, "生年月日(任意)" %><br />
       <%= f.date_select :birthday, {start_year: 1940, end_year: Time.now.year - 10, date_separator: '/ ', prompt:"--" } %>
     </div>
