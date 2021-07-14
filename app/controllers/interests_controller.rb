@@ -1,18 +1,23 @@
 class InterestsController < ApplicationController
 
+
   def create
-    interest = current_user.interests.build(movie_id: params[:movie_id], title: params[:title], poster_path: params[:poster_path])
-    interest.save
-    redirect_to request.referer, notice: "観たいリストに追加しました"
+    a = Tmdb::Movie.detail(params[:movie_id])
+    @interest = Interest.new(title: a['title'], poster_path: a['poster_path'], movie_id: a['id'], user_id: current_user.id)
+    if @interest.save
+      redirect_to request.referer, notice: "観たいリストに追加しました"
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
-    interest = current_user.interests.find_by(movie_id: params[:movie_id])
-    interest.destroy
-    redirect_to request.referer, alert: "観たいリストから削除しました"
+    @interest = Interest.find_by(movie_id: params[:movie_id], user_id: current_user.id)
+    @interest.destroy
+    redirect_to request.referer, notice: "観たいリストから削除しました"
   end
-  
-  
-   
+
+
+
 
 end
