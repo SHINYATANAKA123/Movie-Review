@@ -18,6 +18,7 @@
 				<%= @movie.overview %>
 			</div>
 
+          <% if user_signed_in? %>
 			<% if @review_count < 1 %>
 			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
 			<% else %>
@@ -25,10 +26,16 @@
 			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
 			 <% end %>
 			<% end %>
-      
-       <div class="movie_interest" id="movie-<%= @movie_id %>_interest">
+		　<% else %>
+		　 ログインしてレビューをする
+		  <% end %>
+		  
+		  <div class="movie_interest" id="movie-<%= @movie_id %>_interest">
          <%= render 'interests/interest', movie: @movie %>
         </div>
+
+
+       
 
 
 		</div>
