@@ -5,7 +5,11 @@
       <p class="border-bottom"></p>
         <%= f.label :birthday, '年齢', class:"mr-2 font-weight-bold" %>
         <br />
-      
+        <%= f.number_field :birthday_to_age_gteq, in: 0..150, include_blank: true %>
+        |  歳〜
+        <%= f.number_field :birthday_to_age_lteq, in: 0..150, include_blank: true %>
+        |  歳
+
       <p class="border-bottom"></p>
         <%= f.label :sex_eq, '性別', class:"mr-2 font-weight-bold" %>
         <br />
@@ -14,6 +18,7 @@
         <%= f.radio_button 'sex_eq', '1' %>
         <%= f.label :sex_eq_1, '男' %>
         <%= f.radio_button 'sex_eq', '2' %>
+        <%= f.label :sex_eq_2, '女' %>
         <%= f.radio_button 'sex_eq', '9' %>
         <%= f.label :sex_eq_9, 'その他' %>
       <p></p>
