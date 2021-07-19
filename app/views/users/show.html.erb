@@ -12,8 +12,10 @@
                  <% end %>
                 <p class="user-intro"><%= safe_join(@user.intro.split("\n"),tag(:br))%></p>
                 <p><%= @user.email %></p>
+                <% if user_signed_in? %>
                 <% if @user.id == current_user.id %>
                   <%= link_to("編集", "/users/#{@user.id}/edit") %>
+                <% end %>
                 <% end %>
               </div>
         </div>
