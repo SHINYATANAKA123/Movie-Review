@@ -1,0 +1,22 @@
+<div class="timeline_item">
+  <div class="timeline-mark">
+    <div class="timeline-mark_main">
+      <div class="timeline-mark_left">
+        <div class="c-media">
+          <div class="c-media_avator"><img src=<%= review.user.image_id %> ></div>
+          <div class="c-media_content">
+            <div class="c-media_text"><%= link_to("#{review.user.name}の感想・レビュー", "/users/#{review.user.id}") %></div>
+            <div class="c-media_date"><%= review.created_at %></div>
+          </div>
+        </div>
+        <div class="timeline-mark_content">
+          <div class="timeline-mark_title"></div>
+          <div class="c-rating"></div>
+          <div class="timeline-mark_review"></div>
+        </div>
+      </div>
+      <div class="timeline-mark_light"></div>
+      <div class="c-reaction"></div>
+    </div>
+  </div>
+</div>

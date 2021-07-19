@@ -27,4 +27,9 @@ class User < ApplicationRecord
     passive_relationships.where(following_id: user.id).exists? #exists?の方がいいかも
   end
 
+  def timeline
+    Review.where("user_id IN (?)", following_ids)
+  end
+
+
 end
