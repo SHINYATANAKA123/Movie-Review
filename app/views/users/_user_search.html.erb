@@ -1,0 +1,34 @@
+
+  <h5 class="search_heading w-100">ユーザー検索</h5>
+  <div class="search_field px-1">
+    <%= search_form_for(q, url:users_search_path) do |f| %>
+      <p class="border-bottom"></p>
+        <%= f.label :birthday, '年齢', class:"mr-2 font-weight-bold" %>
+        <br />
+        <%= f.number_field :birthday_to_age_gteq, in: 0..150, include_blank: true %>
+        |  歳〜
+        <%= f.number_field :birthday_to_age_lteq, in: 0..150, include_blank: true %>
+        |  歳
+
+      <p class="border-bottom"></p>
+        <%= f.label :sex_eq, '性別', class:"mr-2 font-weight-bold" %>
+        <br />
+        <%= f.radio_button 'sex_eq', '', {:checked => true} %>
+        <%= f.label :sex_eq_, '指定なし' %>
+        <%= f.radio_button 'sex_eq', '1' %>
+        <%= f.label :sex_eq_1, '男' %>
+        <%= f.radio_button 'sex_eq', '2' %>
+        <%= f.label :sex_eq_2, '女' %>
+        <%= f.radio_button 'sex_eq', '9' %>
+        <%= f.label :sex_eq_9, 'その他' %>
+      <p></p>
+        <%= f.label :intro_cont, '自己紹介', class:"mr-2 font-weight-bold" %>
+        <%= f.search_field :intro_cont %>
+      <p></p>
+        <%= f.label :name_cont, '名前', class:"mr-2 font-weight-bold" %>
+        <%= f.search_field :name_cont %>
+      <div class="text-center mb-4">
+        <%= f.submit class:"btn btn-info rounded-pill"%>
+      </div>
+      <% end %>
+  </div>
