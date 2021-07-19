@@ -9,23 +9,56 @@
 }
 
 .review-main{
-  display: inline-block;
+  display: flex;
 }
+
+
 
 .review-left {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    width: 400px;
+    width: 550px;
     margin-bottom: 15px;
 }
 
-.review-left img {
-  width: 50px;
-  height: 50px;
-  border-radius: 40%;
+
+.review-user-icon{
+  display: inline-block;
+}
+
+.review-user-icon img{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
   box-shadow: 0 2px 6px #c1ced7;
   object-fit: cover;
+}
+
+.review-user-name{
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  margin-left: 25px;
+  display: inline-block;
+}
+
+
+
+.review-time {
+    color: #8899a6;
+    margin-bottom: 10px;
+    margin-left: 105px;
+}
+
+
+.review-title{
+  margin-top: 20px;
+}
+
+.review-text{
+  margin: 20px 0px;
 }
 
 .review-right {
@@ -35,4 +68,7 @@
     width: 150px;
     margin-bottom: 30px;
     margin-left: auto;
+    margin-right: 30px;
 }
+
+

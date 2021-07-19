@@ -5,17 +5,29 @@
       <div class="posts-index-item">
         <div class="review-main">
         <div class="review-left">
-          <img src=<%= review.user.image_id %> >
+          <div class="review-user-icon">
+           <% if review.user.image_id? %>
+            <img src="<%= review.user.image_id %>" >
+          <% else %>
+            <img src="/assets/default.png">
+          <% end %>
+          </div>
 
 
-          <div class="post-user-name">
+          <div class="review-user-name">
             <%= link_to("#{review.user.name}の感想・レビュー", "/users/#{review.user.id}") %>
           </div>
-          <div class="post-time">
+
+
+
+
+
+
+          <div class="review-time">
         		<%= review.created_at %>
       		</div>
-      		<div class="post-title">
-            <h6><strong><%= review.title %></strong></h6>
+      		<div class="review-title">
+            <h5><strong><%= review.title %></strong></h5>
           </div>
       			<div class="post-raty">
       		 	<div id="star-rate-<%= review.id %>" class="rate-number">
@@ -44,11 +56,43 @@
           <% end %>
          </div>
          <div class="review-right">
+          <div class="review-poster">
            <% if review.poster_path %>
-				<%= image_tag('https://image.tmdb.org/t/p/w185' + review.poster_path, class: 'img-thumbnail') %>
+				<%= image_tag('https://image.tmdb.org/t/p/w500' + review.poster_path, class: 'img-thumbnail') %>
 			<% else %>
 				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'fallback-thumbnail') %>
 			<% end %>
+		  </div>
+		  <div class="review-info">
+		      <div class="movie_interest" id="movie-<%= review.movie_id %>_interest">
+               <%= render 'interests/review_interest', movie: review.movie_id, user: review.user_id %>
+              </div>
+		  </div>
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  <% if @interests.present? %>
+          <%= link_to movie_interest_path(user_id: review.user_id, movie_id: review.movie_id), class:"btn btn-light ", method: :delete, remote: true do %>
+            <i class="fas fa-plus-square square-green"></i>
+            <%= @interest_users %>
+          <% end %>
+         <% else %>
+          <%= link_to movie_interest_path(user_id: review.user_id, movie_id: review.movie_id), class:"btn btn-light ",  method: :post, remote: true do %>
+            <i class="far fa-plus-square"></i>
+            <%= @interest_users %>
+           <% end %>
+          <% end %>
+		  
+		  
+		  
+		  @interests = Interest.find_by(user_id: @review_user_id, movie_id: @movie_id )if user_signed_in? 
+		  
+		  
+		  
          </div>
          </div>
 
@@ -70,4 +114,3 @@
     <% end %>
   </div>
 </div>
-

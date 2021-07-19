@@ -1,0 +1,11 @@
+ <% if @interests.present? %>
+  <%= link_to movie_interest_path(user_id: user, movie_id: movie), class:"btn btn-light ", method: :delete, remote: true do %>
+    <i class="fas fa-plus-square square-green"></i>
+    <%= @interest_users %>
+  <% end %>
+ <% else %>
+  <%= link_to movie_interest_path(user_id: user, movie_id: movie), class:"btn btn-light ",  method: :post, remote: true do %>
+    <i class="far fa-plus-square"></i>
+    <%= @interest_users %>
+   <% end %>
+  <% end %>
