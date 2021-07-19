@@ -1,4 +1,14 @@
 <h2>人気の映画 - <%= @popular_movie.total_results %> movies</h2>
+<div class="genre_search mt-4 shadow-sm">
+  <div class="search_heading">ジャンルで映画検索</div>
+  <div class="search_items">
+    <% @genres.each do |genre| %>
+      <%= link_to search_path(genre_id: genre[:id]) do %>
+        <div class="genre-button"><%= genre[:name] %></div>
+        <% end %>
+        <% end %>
+  </div>
+ </div>
 
 <ul class="movies-list">
 	<% @popular_movie.results.each do |movie| %>
