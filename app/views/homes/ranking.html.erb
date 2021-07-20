@@ -27,8 +27,9 @@
       </div>
       <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
         <% @count_ranking_reviews.each do |review| %>
-          <div class="card" style="width: 14rem;">
-            <%= image_tag('https://image.tmdb.org/t/p/w342' + review.poster_path) %>
+        <div class="movie-count-card">
+          <div class="card">
+            <%= image_tag('https://image.tmdb.org/t/p/w342' + review.poster_path, class: 'movie-count-img') %>
             <div class="card-body">
               <p class="card-title"><%= review.title %></p>
               <p class="card-text"><%= "総レビュー数: #{review.review_count}" %></p>
@@ -39,6 +40,7 @@
               <% end %>
             </div>
           </div>
+        </div>
         <% end %>
       </div>
     </div>
