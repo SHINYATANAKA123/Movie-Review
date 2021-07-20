@@ -1,22 +1,11 @@
-<div class="timeline_item">
-  <div class="timeline-mark">
-    <div class="timeline-mark_main">
-      <div class="timeline-mark_left">
-        <div class="c-media">
-          <div class="c-media_avator"><img src=<%= review.user.image_id %> ></div>
-          <div class="c-media_content">
-            <div class="c-media_text"><%= link_to("#{review.user.name}の感想・レビュー", "/users/#{review.user.id}") %></div>
-            <div class="c-media_date"><%= review.created_at %></div>
-          </div>
-        </div>
-        <div class="timeline-mark_content">
-          <div class="timeline-mark_title"></div>
-          <div class="c-rating"></div>
-          <div class="timeline-mark_review"></div>
-        </div>
-      </div>
-      <div class="timeline-mark_light"></div>
-      <div class="c-reaction"></div>
-    </div>
+<div class="heading">フォローしているユーザーの最新レビュー</div>
+<% if user_signed_in? %>
+  <div>
+    <%= paginate @timeline_reviews %>
+    <%= render 'layouts/timeline', timeline_reviews: @timeline_reviews %>
+    <%= paginate @timeline_reviews %>
   </div>
-</div>
+<% else %>
+  <div class="text-center">| ログインしてください</div>
+<% end %>
+
