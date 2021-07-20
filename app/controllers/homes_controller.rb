@@ -1,4 +1,7 @@
 class HomesController < ApplicationController
+  
+  def about
+  end
 
   def ranking
     if user_signed_in?

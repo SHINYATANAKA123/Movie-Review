@@ -11,7 +11,13 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find_by(id: params[:id])
+
       @reviews = @user.reviews.page(params[:page]).reverse_order
+      @good_reviews = @user.good_reviews.page(params[:page]).reverse_order
+      @bad_reviews = @user.bad_reviews.page(params[:page]).reverse_order
+
+      @user_followings = @user.followings.page(params[:page])
+      @user_followers = @user.followers.page(params[:page])
   end
 
   def edit

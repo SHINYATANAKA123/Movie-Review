@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'movies#index'
   get 'timeline' => 'homes#timeline'
   get 'ranking' => 'homes#ranking'
+  get 'about' => 'homes#about'
   get 'search' => 'searches#search'
   get 'reviews/search' => 'reviews#search'
   get 'users/search' => 'users#search'

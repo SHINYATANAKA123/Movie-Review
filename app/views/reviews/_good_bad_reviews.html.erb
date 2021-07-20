@@ -1,0 +1,91 @@
+<%= paginate reviews %>
+<% reviews.each do |review| %>
+      <div class="posts-index-item">
+        <div class="review-main">
+        <div class="review-left">
+          <div class="review-user-icon">
+           <% if review.user.image_id? %>
+            <img src="<%= review.user.image_id %>" >
+          <% else %>
+            <img src="/assets/default.png">
+          <% end %>
+          </div>
+
+
+          <div class="review-user-name">
+            <%= link_to("#{review.user.name}の感想・レビュー", "/users/#{review.user.id}") %>
+          </div>
+
+
+
+
+
+
+          <div class="review-time">
+        		<%= review.created_at %>
+      		</div>
+      		<div class="review-title">
+            <h5><strong><%= review.title %></strong></h5>
+          </div>
+      			<div class="post-raty">
+      		 	<div id="star-rate-<%= review.id %>" class="rate-number">
+		          <script>
+		          $('#star-rate-<%= review.id %>').empty();
+		          $('#star-rate-<%= review.id %>').raty({
+		            size: 36,
+		            starOff:  '<%= asset_path('star-off.png') %>',
+		            starOn : '<%= asset_path('star-on.png') %>',
+		            starHalf: '<%= asset_path('star-half.png') %>',
+		            half: true,
+		            readOnly: true,
+		            score: <%= review.total_score %>,
+		          });
+		          </script>
+          	</div>
+          	<div class="rate-number"><%= review.total_score %></div>
+          </div>
+          <%= link_to "/reviews/#{review.id}" do %>
+           <div class="review-text">
+             <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
+              <% if review.body.size >= 300 %>
+                <p><<<続きを読む</p>
+              <% end %>
+           </div>
+          <% end %>
+         </div>
+         <div class="review-right">
+          <div class="review-poster">
+         <a href="/movies/<%= review.movie_id %>">
+           <% if review.poster_path %>
+				<%= image_tag('https://image.tmdb.org/t/p/w500' + review.poster_path, class: 'img-thumbnail') %>
+			<% else %>
+				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'fallback-thumbnail') %>
+			<% end %>
+			</a>
+		  </div>
+
+
+
+
+         </div>
+         </div>
+
+      <div class="review_index_card_footer">
+          <div class="review_index_good-bad" id="review-<%= review.id %>_good">
+           <%= render 'goods/good-bad', review: review %>
+          </div>
+      <% if review.user_id == current_user.id %>
+        <div class="post-menus">
+          <%= link_to("編集", "/reviews/#{review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
+          <%= link_to("削除", "/reviews/#{review.id}", {method: "delete"}) %>
+        </div>
+      <% end %>
+
+</div>
+
+
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate reviews %>
