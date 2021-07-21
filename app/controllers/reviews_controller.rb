@@ -18,8 +18,7 @@ class ReviewsController < ApplicationController
       if review_count < 1
         @review.save
         redirect_to request.referer, notice: "レビューを保存しました"
-      else
-        redirect_to request.referer, flash[:alert] = "レビューの投稿は一度までです"
+
       end
     else
       # renderだとパラメータが消えてしまうので、バリデーションメッセージをフラッシュに入れてredirectし、viewで表示させる

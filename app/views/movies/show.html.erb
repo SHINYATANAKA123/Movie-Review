@@ -18,7 +18,7 @@
 				<%= @movie.overview %>
 			</div>
 
-          <% if user_signed_in? %>
+      <% if user_signed_in? %>
 			<% if @review_count < 1 %>
 			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
 			<% else %>
