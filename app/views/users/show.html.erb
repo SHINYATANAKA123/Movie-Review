@@ -30,6 +30,9 @@
         <% end %>
       </p>
     </div>
+    </div>
+  </div>
+  </div>
     <ul class="nav nav-tabs justify-content-center" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
@@ -68,10 +71,7 @@
         </a>
       </li>
     </ul>
-  </div>
-</div>
-<div class="container">
-     <div class="tab-content">
+    <div class="tab-content">
       <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
         <%= paginate @user_followers %>
           <div class="flex user_show_container">
@@ -87,19 +87,19 @@
         <%= paginate @user_followings %>
       </div>
       <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
-        <%= render 'reviews/good_bad_reviews', reviews: @good_reviews %>
+        <%= render 'layouts/timeline', timeline_reviews: @good_reviews %>
       </div>
       <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
-        <%= render 'reviews/good_bad_reviews', reviews: @bad_reviews %>
+        <%= render 'layouts/timeline', timeline_reviews: @bad_reviews %>
       </div>
       <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">
-        <%= render 'reviews/good_bad_reviews', reviews: @reviews %>
+        <%= render 'layouts/timeline', timeline_reviews: @reviews %>
       </div>
       <div class="tab-pane fade" id="item6" role="tabpanel" aria-labelledby="item6-tab">
-
+        <%= render 'users/user_interest', interests: @interests %>
       </div>
     </div>
-</div>
+
 
 
 

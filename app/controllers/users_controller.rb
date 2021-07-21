@@ -18,6 +18,8 @@ class UsersController < ApplicationController
 
       @user_followings = @user.followings.page(params[:page])
       @user_followers = @user.followers.page(params[:page])
+      
+      @interests = @user.interests.page(params[:page])
   end
 
   def edit

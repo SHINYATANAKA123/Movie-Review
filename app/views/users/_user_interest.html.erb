@@ -1,0 +1,16 @@
+ <% interests.each do |review| %>
+        <div class="movie-count-card">
+          <div class="card">
+            <%= image_tag('https://image.tmdb.org/t/p/w342' + review.poster_path, class: 'movie-count-img') %>
+            <div class="card-body">
+              <p class="card-title"><%= review.title %></p>
+              
+              <% if current_user.interests.find_by(movie_id: review.movie_id).present? %>
+                <p class="text-center"><%= link_to "観たいリストに追加済み", movie_interest_path(review.movie_id), class:"btn btn-info btn-sm", method: :delete %></p>
+              <% else %>
+                <p class="text-center"><%= link_to "この映画を観たい", movie_interest_path(movie_id: review.movie_id, title: review.title, poster_path: review.poster_path), class:"btn btn-warning btn-sm", method: :post %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+<% end %>
