@@ -18,7 +18,7 @@
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    width: 550px;
+    width: 600px;
     margin-bottom: 15px;
 }
 
@@ -62,15 +62,29 @@
 }
 
 .review-right {
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    width: 150px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: 50px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 320px;
+  margin-bottom: 30px;
+  margin-left: 180px;
 }
 
 .review-poster{
   width: 170px;
+}
+
+.review-poster img {
+  border-radius: 10px;
+  height: 360px;
+  width: 240px;
+}
+
+.review-button{
+  display: flex;
+  padding-top: 10px;
+}
+
+.review-cards-bottom{
+  padding-right: 20px;
 }
