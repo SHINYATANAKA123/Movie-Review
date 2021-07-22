@@ -1,4 +1,5 @@
 <section id="detail" style="background-image: url(<%= "https://image.tmdb.org/t/p/original" + "#{@movie.backdrop_path}"%>);">
+	<div class="background-custom">
 	<div class="movie-content">
 		<div class="content-left">
 			<% if @movie.poster_path %>
@@ -20,10 +21,10 @@
 				<% if user_signed_in? %>
 					<div class="movie-follow-button">
 						<% if @review_count < 1 %>
-							<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
+							<button type="button" class="btn btn-warning btn-sm movie-button" data-toggle="modal" data-target="#testModal">レビューする</button>
 						<% else %>
 					 		<%= link_to edit_review_path(@user_review) do %>
-					  	<button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+					  	<button type="button" class="btn btn-info btn-sm movie-button" >レビュー済み</button>
 					 		<% end %>
 					 	</div>
 					<% end %>
@@ -34,17 +35,10 @@
 			　 ログインしてレビューをする
 			  <% end %>
 			 </div>
-
-
-
         <div class="movie-overview">
-				<%= @movie.overview %>
+        	<div class="overview-title">概要</div>
+				　<div class="overview-text"><%= @movie.overview %></div>
 			</div>
-
-
-
-
-
 		</div>
 
 	    <!-- ボタン・リンククリック後に表示される画面の内容 -->
@@ -89,6 +83,7 @@
 	  	 		</div>
 			</div>
 	 	</div>
+	</div>
 	</div>
 </section>
 
