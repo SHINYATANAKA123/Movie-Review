@@ -1,43 +1,48 @@
 <section id="detail">
-	<div class="container">
-	<div class="movie-content row">
+	<div class="movie-content">
 		<div class="content-left">
 			<% if @movie.poster_path %>
-				<%= image_tag('https://image.tmdb.org/t/p/w500' + @movie.poster_path, class: 'img-thumbnail') %>
+				<%= image_tag('https://image.tmdb.org/t/p/w500' + @movie.poster_path) %>
 			<% else %>
 				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'fallback-thumbnail') %>
 			<% end %>
 		</div>
 
 		<div class="content-right">
-			<h1><%= @movie.title %></h1>
-			<span class="movie-release">公開日: <%= @movie.release_date.to_date %></span>
-			<span class="movie-genres">ジャンル: <%= @movie.genres.map(&:name).join(', ') %></span>
+			<div class="movie-info-top">
+				<div class="movie-show-title"><%= @movie.title %></div>
+					<div class="movie-info-date">
+						<span class="movie-release">公開日: <%= @movie.release_date.to_date %></span>
+						<span class="movie-genres"><%= @movie.genres.map(&:name).join(', ') %></span>
+					</div>
+			</div>
+      <div class="movie-user-action">
+				<% if user_signed_in? %>
+					<div class="movie-follow-button">
+						<% if @review_count < 1 %>
+							<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
+						<% else %>
+					 		<%= link_to edit_review_path(@user_review) do %>
+					  	<button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+					 		<% end %>
+					 	</div>
+					<% end %>
+						<div class="movie_interest movie-button" id="movie-<%= @movie_id %>_interest">
+		         		<%= render 'interests/interest', movie: @movie %>
+		        	</div>
+			　<% else %>
+			　 ログインしてレビューをする
+			  <% end %>
+			 </div>
 
-			<div class="movie-overview">
+
+
+        <div class="movie-overview">
 				<%= @movie.overview %>
 			</div>
 
-      <% if user_signed_in? %>
-			<% if @review_count < 1 %>
-			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#testModal">レビューする</button>
-			<% else %>
-			 <%= link_to edit_review_path(@user_review) do %>
-			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
-			 <% end %>
-			<% end %>
-		　<% else %>
-		　 ログインしてレビューをする
-		  <% end %>
-		  
-		  <div class="movie_interest" id="movie-<%= @movie_id %>_interest">
-         <%= render 'interests/interest', movie: @movie %>
-        </div>
-        
-        
 
 
-       
 
 
 		</div>
@@ -84,7 +89,6 @@
 	  	 		</div>
 			</div>
 	 	</div>
-	</div>
 	</div>
 </section>
 

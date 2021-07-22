@@ -1,12 +1,9 @@
-<p>観たいリストに追加する</p>
  <% if @interests.present? %>
-  <%= link_to movie_interest_path(user_id: current_user.id, movie_id: movie['id']), class:"btn btn-light ", method: :delete, remote: true do %>
-    <i class="fas fa-plus-square square-green"></i>
-    <%= @interest_users %>
+  <%= link_to  movie_interest_path(user_id: current_user.id, movie_id: movie['id']), class:"btn btn-info btn-sm", method: :delete, remote: true do %>
+    <p>追加済み<%= @interest_users %></p>
   <% end %>
  <% else %>
-  <%= link_to movie_interest_path(user_id: current_user.id, movie_id: movie['id']), class:"btn btn-light ",  method: :post, remote: true do %>
-    <i class="far fa-plus-square"></i>
-    <%= @interest_users %>
+  <%= link_to  movie_interest_path(user_id: current_user.id, movie_id: movie['id']), class:"btn btn-warning btn-sm", method: :post, remote: true do %>
+    <p>観たい!<%= @interest_users %></p>
    <% end %>
   <% end %>

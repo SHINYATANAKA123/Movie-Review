@@ -92,6 +92,63 @@ ul.horizontal-list {
 }
 
 /* posts/show ================================ */
+
+.movie-content{
+  display: flex;
+  max-width: 1300px;
+  padding: 40px;
+  width: 100%;
+  margin: 0px auto;
+  color: white;
+
+}
+
+.content-left{
+
+}
+
+.content-left img{
+  height: 525px;
+  width: 350px;
+}
+
+.content-right{
+  padding-left: 40px;
+}
+
+.movie-show-title {
+    font-weight: 800;
+    display: flex;
+    font-size: 25px;
+    line-height: 40px;
+    height: 40px;
+}
+
+.movie-info-date{
+    padding-top: 20px;
+    padding-left: 5px;
+    margin-bottom: 20px;
+    line-height: 24px;
+    font-weight: 250;
+}
+
+.movie-user-action{
+  display: flex;
+}
+
+.movie-follow-button{
+  padding-right: 20px;
+}
+
+.btn-warning {
+  height: 40px;
+}
+
+.btn-info{
+  height: 40px;
+}
+
+
 .posts-show form {
   display: inline;
 }
