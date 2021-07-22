@@ -15,13 +15,46 @@
   </div>
  </div>
 
-<% @movies.results.each do |movie| %>
-  <%= link_to movie_path(movie['id']) do %>
-  　	<% if movie.poster_path %>
-    <%= image_tag('https://image.tmdb.org/t/p/w300' + movie.poster_path, class: 'img-thumbnail') %>
-		<% else %>
-			<%= image_tag('https://dummyimage.com/300x450/000/fff', class: 'fallback-thumbnail') %>
-		<% end %>
-    <%= movie['title'] %><br>
-  <% end %>
-<% end %>
+<div class="container-fluid">
+  <ul class="horizontal-list">
+    <ul class="movies-list">
+    	<% @movies.results.each do |movie| %>
+    		<% if movie %>
+    			<div class="movie-count-card index-cards">
+              <div class="card" style="border-radius: 20px;">
+               <%= link_to movie_path(movie.id) do %>
+                <% if movie.poster_path %>
+          				<%= image_tag('https://image.tmdb.org/t/p/w500' + movie.poster_path, class: 'movie-count-img index-cards-img') %>
+          			<% else %>
+          				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'movie-count-img index-cards-img') %>
+          			<% end %>
+          		 <% end %>
+                <div class="card-body index-cards-body" style="padding: 10px;">
+                  <div class="card-title movie-title"><%= movie.title %></div>
+                  <p id="index-cards-text"  class="card-text"><%= movie.release_date %></p>
+                  <% if current_user.interests.find_by(movie_id: movie.id).present? %>
+                    <div class="index-cards-bottom"><%= link_to "追加済み", movie_interest_path(movie.id), class:"btn btn-info btn-sm", method: :delete %></div>
+                  <% else %>
+                    <div class="index-cards-bottom"><%= link_to "観たい！", movie_interest_path(movie_id: movie.id, title: movie.title, poster_path: movie.poster_path), class:"btn btn-warning btn-sm", method: :post %></div>
+                  <% end %>
+                  <div class="index-review-button">
+              			<% if current_user.reviews.find_by(movie_id: movie.id).present? %>
+                			<%= link_to movie_path(movie.id) do %>
+                			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+                			 <% end %>
+              			<% else %>
+              			  <%= link_to movie_path(movie.id) do %>
+              			   <button type="button" class="btn btn-warning btn-sm" >レビューする</button>
+              			  <% end %>
+              			<% end %>
+              		</div>
+                </div>
+              </div>
+            </div>
+    		<% end %>
+    	<% end %>
+    </ul>
+  </ul>
+  <ul>
+</ul>
+</div>

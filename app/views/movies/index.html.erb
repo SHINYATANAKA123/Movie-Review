@@ -16,13 +16,15 @@
     		<% if movie %>
     			<div class="movie-count-card index-cards">
               <div class="card" style="border-radius: 20px;">
+               <%= link_to movie_path(movie.id) do %>
                 <% if movie.poster_path %>
           				<%= image_tag('https://image.tmdb.org/t/p/w500' + movie.poster_path, class: 'movie-count-img index-cards-img') %>
           			<% else %>
           				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'movie-count-img index-cards-img') %>
           			<% end %>
+          		 <% end %>
                 <div class="card-body index-cards-body" style="padding: 10px;">
-                  <div id="index-cards-title" class="card-title"><%= movie.title %></div>
+                  <div class="card-title movie-title"><%= movie.title %></div>
                   <p id="index-cards-text"  class="card-text"><%= movie.release_date %></p>
                   <% if current_user.interests.find_by(movie_id: movie.id).present? %>
                     <div class="index-cards-bottom"><%= link_to "追加済み", movie_interest_path(movie.id), class:"btn btn-info btn-sm", method: :delete %></div>

@@ -88,22 +88,11 @@
 </section>
 
 
-<% @casts.each do |cast| %>
-<%= cast.name %>
-<%= image_tag('https://image.tmdb.org/t/p/original' + cast.profile_path) %>
-<% end %>
-
-
-
-
-
-
-
 <section id="movie-review" >
 
   <div class="main posts-index">
   <div class="container">
-  	<h3 class="page-header"><%= "「#{@movie.title}」に投稿された評価・感想"%></h3>
+  	<div class="page-header"><%= "「#{@movie.title}」に投稿された評価・感想"%></div>
     <% @reviews.each do |review| %>
       <div class="posts-index-item">
         <div class="post-left">
