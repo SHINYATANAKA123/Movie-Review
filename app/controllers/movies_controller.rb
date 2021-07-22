@@ -6,11 +6,12 @@ class MoviesController < ApplicationController
     @genres = GENRES
   end
 
- 
+
 
   def show
 
     @movie = Tmdb::Movie.detail(params[:id])
+    @casts = Tmdb::Movie.cast(params[:id])
     @movie_id = params[:id]
     @images = Tmdb::Movie.posters(params[:id])
 

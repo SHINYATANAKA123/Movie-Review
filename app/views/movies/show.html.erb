@@ -87,6 +87,18 @@
 	</div>
 </section>
 
+
+<% @casts.each do |cast| %>
+<%= cast.name %>
+<%= image_tag('https://image.tmdb.org/t/p/original' + cast.profile_path) %>
+<% end %>
+
+
+
+
+
+
+
 <section id="movie-review" >
 
   <div class="main posts-index">
