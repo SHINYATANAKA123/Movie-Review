@@ -18,6 +18,21 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+body * a {
+  text-decoration: none;
+  color: black;
+}
+
+body * a:hover {
+  text-decoration: none;
+  color: #91969E;
+}
+
+
+.header-text{
+  text-decoration: none;
+  color: #ccc;
+}
 
 #detail {
   width: 100%;
@@ -62,7 +77,7 @@
 #footer {
   margin-top: 200px;
   position: relative;
-  background: #032541;
+  background: #021b30;
 }
 
 #footer .logo {
