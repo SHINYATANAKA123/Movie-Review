@@ -1,3 +1,34 @@
+<div>
+  <h5 class="search_heading w-100">検索条件</h5>
+  <% if params[:q] %>
+    <div class="search_field px-1">
+      <% unless params[:q][:birthday_to_age_gteq].empty? %>
+        <div class="font-weight-bold">年齢: <%= params[:q][:birthday_to_age_gteq] %> 歳以上</div>
+      <% end %>
+      <% unless params[:q][:birthday_to_age_lteq].empty? %>
+        <div class="font-weight-bold">年齢: <%= params[:q][:birthday_to_age_lteq] %> 歳以下</div>
+      <% end %>
+      <% unless params[:q][:sex_eq].empty? %>
+        <% if params[:q][:sex_eq] == '1' %>
+          <div class="font-weight-bold">性別: 男姓</div>
+        <% elsif params[:q][:sex_eq] == '2' %>
+          <div class="font-weight-bold">性別: 女姓</div>
+        <% else %>
+          <div class="font-weight-bold">性別: その他</div>
+        <% end %>
+      <% end %>
+      <% unless params[:q][:intro_cont].empty? %>
+        <div class="font-weight-bold"> 自己紹介: <%= params[:q][:intro_cont] %> </div>
+      <% end %>
+      <% unless params[:q][:name_cont].empty? %>
+        <div class="font-weight-bold">名前: <%= params[:q][:name_cont] %> </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="search_field text-center">検索条件はありません</div>
+  <% end %>
+</div>
+
 
   <h5 class="search-heading w-100">ユーザー検索</h5>
   <div class="search_field px-1">
@@ -17,9 +48,9 @@
             <%= f.radio_button 'sex_eq', '', {:checked => true} %>
             <%= f.label :sex_eq_, '指定なし' %>
             <%= f.radio_button 'sex_eq', '1' %>
-            <%= f.label :sex_eq_1, '男' %>
+            <%= f.label :sex_eq_1, '男姓' %>
             <%= f.radio_button 'sex_eq', '2' %>
-            <%= f.label :sex_eq_2, '女' %>
+            <%= f.label :sex_eq_2, '女姓' %>
             <%= f.radio_button 'sex_eq', '9' %>
             <%= f.label :sex_eq_9, 'その他' %>
           <p></p>
