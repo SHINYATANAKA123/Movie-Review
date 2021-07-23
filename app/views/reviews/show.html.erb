@@ -2,7 +2,6 @@
 <div class="container">
 <div class="main posts-index">
 
-
       <div class="posts-index-item">
         <div class="review-main">
         <div class="review-left">
@@ -14,16 +13,9 @@
           <% end %>
           </div>
 
-
           <div class="review-user-name">
             <%= link_to("#{@review.user.name}の感想・レビュー", "/users/#{@review.user.id}") %>
           </div>
-
-
-
-
-
-
           <div class="review-time">
         		<%= @review.created_at %>
       		</div>
@@ -49,10 +41,8 @@
           </div>
           <%= link_to "/reviews/#{@review.id}" do %>
            <div class="review-text">
-             <%= safe_join(@review.body.truncate(300).split("\n"),tag(:br)) %>
-              <% if @review.body.size >= 300 %>
-                <p><<<続きを読む</p>
-              <% end %>
+             <%= safe_join(@review.body.split("\n"),tag(:br)) %>
+
            </div>
           <% end %>
          </div>
@@ -60,13 +50,31 @@
           <div class="review-poster">
          <a href="/movies/<%= @review.movie_id %>">
            <% if @review.poster_path %>
-				<%= image_tag('https://image.tmdb.org/t/p/w500' + @review.poster_path, class: 'img-thumbnail') %>
+				<%= image_tag('https://image.tmdb.org/t/p/w500' + @review.poster_path ) %>
 			<% else %>
-				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'fallback-thumbnail') %>
+				<%= image_tag('https://dummyimage.com/500x750/000/fff' ) %>
 			<% end %>
 			</a>
 		  </div>
 
+
+      <div class="review-button">
+          <% if current_user.interests.find_by(movie_id: @review.movie_id).present? %>
+          <div class="review-cards-bottom"><%= link_to "追加済み", movie_interest_path(@review.movie_id), class:"btn btn-info btn-sm", method: :delete %></div>
+        <% else %>
+          <div class="review-cards-bottom"><%= link_to "観たい！", movie_interest_path(movie_id: @review.movie_id, title: @review.title, poster_path: @review.poster_path), class:"btn btn-warning btn-sm", method: :post %></div>
+        <% end %>
+
+  			<% if current_user.reviews.find_by(movie_id: @review.movie_id).present? %>
+    			<%= link_to movie_path(@review.movie_id) do %>
+    			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+    			 <% end %>
+  			<% else %>
+  			  <%= link_to movie_path(@review.movie_id) do %>
+  			   <button type="button" class="btn btn-warning btn-sm" >レビューする</button>
+  			  <% end %>
+  			<% end %>
+      </div>
 
 
 
@@ -88,6 +96,6 @@
 
 
     </div>
-    
+
   </div>
 </div>

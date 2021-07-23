@@ -1,10 +1,7 @@
-<div class="heading">ユーザーを探す</div>
-<%= paginate @users %>
-<div class="row">
-<div class="card col-md-3 px-0 shadow-sm" style="height: fit-content;">
+ <div class="card container shadow-sm col-sm-4 text-center" style="margin-top: 50px;">
     <%= render 'users/user_search', q: @q %>
-    </div>
-    <div class="flex col-md-9">
+ </div>
     <%= render 'users/users', users: @users %>
-    </div>
-    </div><%= paginate @users %>
+  <div class="container">
+    <%= paginate @users %>
+  </div>

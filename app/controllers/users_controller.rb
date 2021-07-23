@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).reverse_order
+    @users = @q.result(distinct: true).page(params[:page]).per(10).reverse_order
     if @q_header
       @users = @q_header.result(distinct: true)
     end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
       @user_followings = @user.followings.page(params[:page])
       @user_followers = @user.followers.page(params[:page])
-      
+
       @interests = @user.interests.page(params[:page])
   end
 
