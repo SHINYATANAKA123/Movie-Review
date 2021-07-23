@@ -1,0 +1,82 @@
+<div class="wrap">
+  <ul id="tab-menu" class="clearfix">
+    <li>
+      <a class="active" href="#tab_followers">
+        <div class="tab-menu_label">follower</div>
+        <div><%= @user.followers.count %></div>
+      </a>
+    </li>
+    <li>
+      <a href="#tab_followings">
+        <div class="tab-menu_label">following</div>
+        <div><%= @user.followings.count %></div>
+      </a>
+    </li>
+    <li>
+      <a href="#tab_goods">
+        <div class="tab-menu_label">Good</div>
+        <div><%= @good_reviews.count %></div>
+      </a>
+    </li>
+    <li>
+      <a href="#tab_bads">
+        <div class="tab-menu_label">Bad</div>
+        <div><%= @bad_reviews.count %></div>
+      </a>
+    </li>
+    <li>
+      <a href="#tab_reviews">
+        <div class="tab-menu_label">レビュー</div>
+        <div><%= @reviews.count %></div>
+      </a>
+    </li>
+    <li>
+      <a href="#tab_interests">
+        <div class="tab-menu_label">観たいリスト</div>
+        <div><%= @user.interests.count %></div>
+      </a>
+    </li>
+  </ul>
+     <div id="tab-contents clearfix">
+        <div id="tab_followers" class="tab">
+          <%= paginate @user_followers %>
+            <div class="flex user_show_container">
+              <%= render 'users/users', users: @user_followers %>
+            </div>
+          <%= paginate @user_followers %>
+        </div>
+        <div id="tab_followings" class="tab">
+          <%= paginate @user_followings %>
+            <div class=" user_show_container">
+              <%= render 'users/users', users: @user_followings %>
+            </div>
+          <%= paginate @user_followings %>
+        </div>
+       <div id="tab_goods" class="tab">
+         <%= render 'reviews/good_bad_reviews', reviews: @good_reviews %>
+       </div>
+        <div id="tab_bads" class="tab">
+          <%= render 'reviews/good_bad_reviews', reviews: @bad_reviews %>
+        </div>
+        <div id="tab_reviews" class="tab">
+          <%= render 'reviews/good_bad_reviews', reviews: @reviews %>
+        </div>
+        <div id="tab_interests" class="tab">
+          aaaaaaaaaaaaaaaaaaa
+        </div>
+    </div>
+</div>
+
+
+<script>
+  $('#tab-contents .tab[id != "tab_followers"]').hide();
+
+  $('#tab-menu a').on('click', function() {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    return false;
+  });
+
+</script>

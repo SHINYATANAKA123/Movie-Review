@@ -3,7 +3,10 @@ class MoviesController < ApplicationController
 
   def index
     @popular_movie = Tmdb::Movie.popular
+    @genres = GENRES
   end
+
+
 
   def show
 

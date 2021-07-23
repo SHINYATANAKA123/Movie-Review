@@ -1,7 +1,8 @@
+<% if timeline_reviews.any? %>
 <div class="container">
 <div class="main posts-index">
 
-    <% @reviews.each do |review| %>
+    <% timeline_reviews.each do |review| %>
       <div class="posts-index-item">
         <div class="review-main">
         <div class="review-left">
@@ -101,3 +102,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

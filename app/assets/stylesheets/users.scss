@@ -52,7 +52,7 @@
   vertical-align: middle;
 }
 
-.card {
+#card {
   height: 350px;
   display: inline-block;
   background-color: white;
@@ -61,6 +61,15 @@
   margin: 0 auto;
   margin-bottom: 35px;
   width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 .users-index-card {
@@ -94,6 +103,19 @@
   font-weight: 400;
 }
 
+.search-heading{
+  padding-top: 10px;
+}
+
+.user-search-age{
+  margin-bottom: 10px;
+}
+
+.user-search-name{
+  padding-right: 40px;
+  margin-bottom: 20px;
+}
+
 
 
 .follow-box{
@@ -104,7 +126,7 @@
   margin-bottom: 30px;
 }
 
-.user-show {
+.user-show-date {
   text-align: center;
 }
 
@@ -148,4 +170,65 @@
   border-radius: 50%;
   margin: 20px 0 10px;
   object-fit: cover;
+}
+
+.wrap{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.clearfix {
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:after{
+  content:"";
+  clear: both;
+  display: block;
+}
+
+#tab-menu li {
+  float: left;
+  list-style-type: none;
+  width: 16.66%;
+}
+
+#tab-menu a {
+  color: grey;
+  text-decoration: none;
+  display: block;
+  padding: 0.3rem;
+  text-align: center;
+  background: whitesmoke;
+}
+
+#tab-menu .active {
+  background: #ffc107;
+  color: #000;
+}
+
+.tab-menu_label {
+  font-size: 0.7rem;
+}
+
+#tab-contents .tab {
+  padding: 30px;
+  border: solid;
+  border-top: none;
+}
+
+#tab-contents p{
+  line-height: 2.5;
+}
+
+#interests_flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width:760px) {
+  #interests_flex #interests_item {
+    width: 24%;
+  }
 }

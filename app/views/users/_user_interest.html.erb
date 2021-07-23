@@ -1,0 +1,37 @@
+ <div class="container">
+   <ul class="horizontal-list">
+     <% interests.each do |review| %>
+    	<div class="movie-count-card index-cards">
+        <div class="card" style="border-radius: 20px;">
+          <%= link_to movie_path(review.movie_id) do %>
+            <% if review.poster_path %>
+      				<%= image_tag('https://image.tmdb.org/t/p/w500' + review.poster_path, class: 'movie-count-img index-cards-img') %>
+      			<% else %>
+      				<%= image_tag('https://dummyimage.com/500x750/000/fff', class: 'movie-count-img index-cards-img') %>
+      			<% end %>
+      		 <% end %>
+            <div class="card-body index-cards-body" style="padding: 10px;">
+              <div class="card-title movie-title"><%= review.title %></div>
+              <p id="index-cards-text"  class="card-text"><%= "追加した日: #{review.created_at}" %></p>
+              <% if current_user.interests.find_by(movie_id: review.movie_id).present? %>
+                <div class="index-cards-bottom"><%= link_to "追加済み", movie_interest_path(review.movie_id), class:"btn btn-info btn-sm", method: :delete %></div>
+              <% else %>
+                <div class="index-cards-bottom"><%= link_to "観たい！", movie_interest_path(movie_id: review.movie_id, title: review.title, poster_path: review.poster_path), class:"btn btn-warning btn-sm", method: :post %></div>
+              <% end %>
+              <div class="index-review-button">
+          			<% if current_user.reviews.find_by(movie_id: review.movie_id).present? %>
+            			<%= link_to movie_path(review.movie_id) do %>
+            			  <button type="button" class="btn btn-info btn-sm" >レビュー済み</button>
+            			 <% end %>
+          			<% else %>
+          			  <%= link_to movie_path(review.movie_id) do %>
+          			   <button type="button" class="btn btn-warning btn-sm" >レビューする</button>
+          			  <% end %>
+          			<% end %>
+          		</div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+</div>

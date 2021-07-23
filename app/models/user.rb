@@ -27,4 +27,13 @@ class User < ApplicationRecord
     passive_relationships.where(following_id: user.id).exists? #exists?の方がいいかも
   end
 
+  def timeline
+    Review.where("user_id IN (?)", following_ids)
+  end
+
+  def self.follower_ranks
+    User.find(Relationship.group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
+  end
+
+
 end
