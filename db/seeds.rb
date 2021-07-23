@@ -28,5 +28,5 @@ User.create!(name:'miyu',email:'miyu@example.com',password:'000000',birthday:'19
 User.create!(name:'ikko',email:'ikko@example.com',password:'000000',birthday:'1950-01-01',sex:'その他',intro:'ikkoといいます。どうぞよろしくお願いいたします。')
 
 Review.create!(movie_id:'454626', title:'Sonic the Hedgehog', poster_path:'/vTUEyrtZHRBhyR7o75ni15oM1Gg.jpg', user_id:'1', total_score:'5.0', body:'お馴染みセガの人気キャラクターを主人公にした作品。見えないくらい早く走る。 大人から子供までみんなで安心して楽しめる映画です。 ジムキャリーファンもあの変顔を存分に楽しめます(ちょっと老けたけど）。 日本も製作に関わってますがテイストは完全にハリウッドです。')
-Review.create!(movie_id:'454626', title:'Sonic the Hedgehog', poster_path:'/vTUEyrtZHRBhyR7o75ni15oM1Gg.jpg', user_id:'2', total_score:'4.0', body:'実写化は、とても嬉しいけど、ソニックの声優が金丸淳一さんじゃないのは、ちょっとショックかな、、、', tag_list:["かわいい", "笑える"])
+Review.create!(movie_id:'454626', title:'Sonic the Hedgehog', poster_path:'/vTUEyrtZHRBhyR7o75ni15oM1Gg.jpg', user_id:'2', total_score:'4.0', body:'実写化は、とても嬉しいけど、ソニックの声優が金丸淳一さんじゃないのは、ちょっとショックかな、、、')
 Review.create!(movie_id:'454626', title:'Sonic the Hedgehog', poster_path:'/vTUEyrtZHRBhyR7o75ni15oM1Gg.jpg', user_id:'3', total_score:'4.5', body:'あのゲームやアニメで有名なソニックが実写で映画化！どんな内容かとても楽しみにしていましたが、大満足の出来でした。')

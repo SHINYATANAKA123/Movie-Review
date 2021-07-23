@@ -16,8 +16,10 @@ class UsersController < ApplicationController
       @good_reviews = @user.good_reviews.page(params[:page]).reverse_order
       @bad_reviews = @user.bad_reviews.page(params[:page]).reverse_order
 
+    if user_signed_in?
       @user_followings = @user.followings.page(params[:page])
       @user_followers = @user.followers.page(params[:page])
+    end
 
       @interests = @user.interests.page(params[:page])
   end

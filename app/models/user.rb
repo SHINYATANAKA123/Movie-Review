@@ -21,7 +21,9 @@ class User < ApplicationRecord
   attachment :image
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
+
 
   class User < ApplicationRecord
     devise :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
