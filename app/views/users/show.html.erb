@@ -3,7 +3,7 @@
     <div class="user-show-card">
       <div class="card-body">
         <p class="card-text">
-          <div class="main user-show">
+          <div class="main user-show-date">
               <div class="user">
                 <div><img src="<%= @user.image_id %>"></div>
                 <div class="user-name"><%= @user.name %></div>
@@ -30,37 +30,78 @@
         <% end %>
       </p>
     </div>
-    <ul class="nav nav-tabs justify-content-center" role="tablist">
+    </div>
+  </div>
+  </div>
+    <ul class="nav nav-tabs justify-content-center text-center" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">follower</a>
+        <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
+          <div>follower</div>
+          <div><%= @user.followers.count %></div>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">following</a>
+        <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
+          <div>following</div>
+          <div><%= @user.followings.count %></div>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">good</a>
+        <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
+          <div>Good</div>
+          <div><%= @good_reviews.count %></div>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">bad</a>
+        <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
+          <div>Bad</div>
+          <div><%= @bad_reviews.count %></div>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item5-tab" data-toggle="tab" href="#item5" role="tab" aria-controls="item5" aria-selected="false"><%= @user.name%>さんのレビュー</a>
+        <a class="nav-link" id="item5-tab" data-toggle="tab" href="#item5" role="tab" aria-controls="item5" aria-selected="false">
+          <div>レビュー</div>
+          <div><%= @reviews.count %></div>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="item6-tab" data-toggle="tab" href="#item6" role="tab" aria-controls="item6" aria-selected="false"><%= @user.name%>さんの観たいリスト</a>
+        <a class="nav-link" id="item6-tab" data-toggle="tab" href="#item6" role="tab" aria-controls="item6" aria-selected="false">
+          <div>観たいリスト</div>
+          <div><%= @user.interests.count %></div>
+        </a>
       </li>
     </ul>
-  </div>
-</div>
-<div class=container>
     <div class="tab-content">
-      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">This is a text of item#1.</div>
-      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">This is a text of item#2.</div>
-      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">This is a text of item#3.</div>
-      <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">This is a text of item#4.</div>
-      <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">This is a text of item#5.</div>
-      <div class="tab-pane fade" id="item6" role="tabpanel" aria-labelledby="item6-tab">This is a text of item#6.</div>
+      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+        <%= paginate @user_followers %>
+          <div class="flex user_show_container">
+            <%= render 'users/users', users: @user_followers %>
+          </div>
+        <%= paginate @user_followers %>
+      </div>
+      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+        <%= paginate @user_followings %>
+          <div class=" user_show_container">
+            <%= render 'users/users', users: @user_followings %>
+          </div>
+        <%= paginate @user_followings %>
+      </div>
+      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
+        <%= render 'layouts/timeline', timeline_reviews: @good_reviews %>
+      </div>
+      <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
+        <%= render 'layouts/timeline', timeline_reviews: @bad_reviews %>
+      </div>
+      <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">
+        <%= render 'layouts/timeline', timeline_reviews: @reviews %>
+      </div>
+      <div class="tab-pane fade" id="item6" role="tabpanel" aria-labelledby="item6-tab">
+        <%= render 'users/user_interest', interests: @interests %>
+      </div>
     </div>
-</div>
+
+
+
+
 
 

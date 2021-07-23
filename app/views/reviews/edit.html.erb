@@ -1,13 +1,11 @@
+<div class="container" style="padding-top: 80px;">
 	<div class="modal-content">
 			    		<%= form_with(model: @review, local: true) do |form| %>
 			    		   <%= form.hidden_field :movie_id  %>
 		   				   <%= form.hidden_field :title %>
 						   <%= form.hidden_field :poster_path %>
 			    			<div class="modal-header">
-			      			<h5 class="modal-title">レビュ-を編集する</h5>
-			      			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			        			<span aria-hidden="true">&times;</span>
-			      			</button>
+			      			<h5 class="modal-title">「<%= @review.title %>」のレビュ-を編集する</h5>
 			    			</div>
 			    		<div class="modal-body">
 			    		<div class="form-group" id="star">
@@ -36,3 +34,4 @@
 	  	 		</div>
 			</div>
 	 	</div>
+	 </div>

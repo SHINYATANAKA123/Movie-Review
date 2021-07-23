@@ -25,7 +25,7 @@
             <span>ユーザーを探す</span>
             <% end %>
           <li class="nav-item">
-            <%= link_to '#', class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to ranking_path, class: 'nav-link faa-parent animated-hover' do %>
              <i class="fas fa-shopping-cart faa-wrench"></i>
             <span>ランキング</span>
             <% end %>
@@ -33,20 +33,16 @@
 
           <% if user_signed_in? %>
            <li class="nav-item">
-            <%= link_to '#', class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to timeline_path, class: 'nav-link faa-parent animated-hover' do %>
              <i class="fas fa-shopping-cart faa-wrench"></i>
             <span>タイムライン</span>
             <% end %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">設定</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">マイページ</a>
-                <a class="dropdown-item" href="#">プロフィール編集</a>
-                <div class="dropdown-divider"></div>
-                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link faa-parent animated-hover' do  %>
-                <i class="fas fa-sign-out-alt fa-fw faa-wrench"></i>
-                <span>Log Out</span>
-                <% end %>
+                <%= link_to  "マイページ", user_path(current_user), class:"dropdown-item" %>
+                <%= link_to  "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>
+                <%= link_to  "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
               </div>
             </li>
           <% else %>
