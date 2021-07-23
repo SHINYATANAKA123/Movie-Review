@@ -78,6 +78,11 @@ gem 'dotenv-rails'
 
 gem 'ransack'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+
 group :production do
   gem 'mysql2'
 end
