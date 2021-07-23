@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def self.follower_ranks
-    User.find(Relationship.group(:follower_id).order('count(follower_id) desc').limit(3).pluck(:follower_id))
+    User.find(Relationship.group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
   end
 
 

@@ -26,7 +26,7 @@ class Review < ApplicationRecord
   end
 
   def self.count_ranks
-    Review.group(:movie_id, :title, :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(3)
+    Review.group(:movie_id, :title, :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(6)
   end
 
 end
