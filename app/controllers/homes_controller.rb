@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
-  
+  before_action :move_to_signed_in
+
   def about
   end
 
@@ -17,4 +18,13 @@ class HomesController < ApplicationController
       @timeline_reviews = current_user.timeline.page(params[:page]).reverse_order
     end
   end
+
+  private
+  def move_to_signed_in
+    unless user_signed_in?
+      #サインインしていないユーザーはログインページが表示される
+      redirect_to  '/users/sign_in'
+    end
+  end
+
 end

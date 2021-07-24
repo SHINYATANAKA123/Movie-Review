@@ -13,6 +13,7 @@
             <div class="card-body index-cards-body" style="padding: 10px;">
               <div class="card-title movie-title"><%= review.title %></div>
               <p id="index-cards-text"  class="card-text"><%= "追加した日: #{review.created_at}" %></p>
+            <% if user_signed_in? %>
               <% if current_user.interests.find_by(movie_id: review.movie_id).present? %>
                 <div class="index-cards-bottom"><%= link_to "追加済み", movie_interest_path(review.movie_id), class:"btn btn-info btn-sm", method: :delete %></div>
               <% else %>
@@ -29,6 +30,7 @@
           			  <% end %>
           			<% end %>
           		</div>
+          		<% end %>
             </div>
           </div>
         </div>

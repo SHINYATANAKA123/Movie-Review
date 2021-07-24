@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg " style="background: #021b30;">
+    <a class="navbar-brand header-text" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,24 +8,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link_to root_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to root_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-user faa-wrench"></i>
             <span>人気の映画</span>
             <% end %>
           </li>
            <li class="nav-item">
-            <%= link_to reviews_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to reviews_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas  fa-birthday-cake faa-wrench"></i>
             <span>レビューを探す</span>
             <% end %>
           </li>
            <li class="nav-item">
-            <%= link_to users_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to users_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-shopping-cart faa-wrench"></i>
             <span>ユーザーを探す</span>
             <% end %>
           <li class="nav-item">
-            <%= link_to ranking_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to ranking_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-shopping-cart faa-wrench"></i>
             <span>ランキング</span>
             <% end %>
@@ -33,12 +33,12 @@
 
           <% if user_signed_in? %>
            <li class="nav-item">
-            <%= link_to timeline_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to timeline_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-shopping-cart faa-wrench"></i>
             <span>タイムライン</span>
             <% end %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">設定</a>
+              <a class="nav-link dropdown-toggle header-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">設定</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to  "マイページ", user_path(current_user), class:"dropdown-item" %>
                 <%= link_to  "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>
@@ -47,13 +47,13 @@
             </li>
           <% else %>
             <li class="nav-item">
-            <%= link_to new_user_registration_path, class: 'nav-link faa-parent animated-hover' do %>
+            <%= link_to new_user_registration_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-user-plus faa-wrench"></i>
             <span>登録する</span>
             <% end %>
           </li>
            <li class="nav-item">
-            <%= link_to new_user_session_path, class: 'nav-link faa-parent animated-hover' do  %>
+            <%= link_to new_user_session_path, class: 'nav-link faa-parent animated-hover header-text' do  %>
              <i class="fas fa-sign-in-alt faa-wrench"></i>
             <span>ログイン</span>
             <% end %>
