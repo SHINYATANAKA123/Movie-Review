@@ -9,7 +9,7 @@
                   <% if @user.image_id? %>
                     <img src="<%= @user.image_id %>" >
                   <% else %>
-                    <img src="/assets/default.jpg">
+                    <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
                   <% end %>
                 </div>
                 <div class="user-name"><%= @user.name %></div>

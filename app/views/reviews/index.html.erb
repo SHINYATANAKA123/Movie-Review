@@ -9,7 +9,7 @@
            <% if review.user.image_id? %>
             <img src="<%= review.user.image_id %>" >
           <% else %>
-            <img src="/assets/default.jpg">
+            <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
           <% end %>
           </div>
 
