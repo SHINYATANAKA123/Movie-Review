@@ -5,7 +5,13 @@
         <p class="card-text">
           <div class="main user-show-date">
               <div class="user">
-                <div><img src="<%= @user.image_id %>"></div>
+                <div>
+                  <% if @user.image_id? %>
+                    <img src="<%= @user.image_id %>" >
+                  <% else %>
+                    <img src="/assets/default.png">
+                  <% end %>
+                </div>
                 <div class="user-name"><%= @user.name %></div>
                  <% if @user.birthday.present? %>
                   <p class="user-old"><%= age(@user.birthday) %>歳</p>
