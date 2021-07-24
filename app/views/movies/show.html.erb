@@ -90,13 +90,18 @@
 
 <section id="movie-review" >
 
-  <div class="main posts-index">
-  <div class="container">
-  	<div class="page-header"><%= "「#{@movie.title}」に投稿された評価・感想"%></div>
+
+  	<div class="page-header container"><%= "「#{@movie.title}」に投稿された評価・感想"%></div>
     <% @reviews.each do |review| %>
+     <div class="main posts-index">
+  		<div class="container">
       <div class="posts-index-item">
         <div class="post-left">
-        　<img src=<%= review.user.image_id %> >
+        　<% if review.user.image_id? %>
+            <img src="<%= review.user.image_id %>" >
+          <% else %>
+            <img src="/assets/default.png">
+          <% end %>
         </div>
         <div class="post-right">
           <div class="post-user-name">
@@ -126,21 +131,25 @@
           <%= safe_join(review.body.split("\n"),tag(:br)) %>
           <% end %>
 
-          <div class="review_index_card_footer">
+         <div class="review_index_card_footer">
+         <% if user_signed_in? %>
           <div class="review_index_good-bad" id="review-<%= review.id %>_good">
            <%= render 'goods/good-bad', review: review %>
+           <% end %>
           </div>
+     <% if user_signed_in? %>
       <% if review.user_id == current_user.id %>
         <div class="post-menus">
           <%= link_to("編集", "/reviews/#{review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
           <%= link_to("削除", "/reviews/#{review.id}", {method: "delete"}) %>
         </div>
       <% end %>
+      <% end %>
 
     </div>
         </div>
       </div>
-    <% end %>
   </div>
 </div>
+<% end %>
   </section>
