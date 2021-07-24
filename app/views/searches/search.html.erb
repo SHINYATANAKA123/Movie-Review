@@ -1,7 +1,7 @@
 <% if params[:genre_id].present? %>
- <div class="movie-index-title">人気の映画 - <%= @genre[:name] %></div>
+ <div class="movie-index-title">人気の映画 - <%= @genre[:name] %> - <%= @movies.total_results %> 作品</div>
 <% else %>
- <div class="movie-index-title">検索ワード - <%= params[:word] %></div>
+ <div class="movie-index-title">検索ワード - <%= params[:word] %> - <%= @movies.total_results %> 作品</div>
 <% end %>
 
 <div class="genre_search mt-4 shadow-sm">
@@ -60,3 +60,56 @@
   <ul>
 </ul>
 </div>
+
+
+<% if params[:genre_id].present? %>
+  <div class="container  pagenation" >
+    <div class="row justify-content-center">
+     <% if params[:page_id].present? %>
+      <%= link_to  search_path(page_id: @prev_page, genre_id: params[:genre_id]) do %>
+        <button type="button" title="Previous 20 movies" class="page-button">
+          <span class="page-button-text">Prev</span>
+        </button>
+     <% end %>
+      <% end %>
+      <% @pages.each do |page| %>
+      <% if @page == page %>
+        <%= link_to "#{page}", search_path(page_id: page, genre_id: params[:genre_id]), class: "page current_page" %>
+      <% else %>
+        <%= link_to "#{page}", search_path(page_id: page, genre_id: params[:genre_id]), class: "page" %>
+      <% end %>
+    <% end %>
+    <%= link_to  search_path(page_id: @next_page, genre_id: params[:genre_id]) do %>
+    <button type="button" title="Next 20 movies" class="page-button">
+     <span class="page-button-text">Next</span>
+    </button>
+    <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="container  pagenation" >
+    <div class="row justify-content-center">
+     <% if params[:page_id].present? %>
+      <%= link_to  search_path(page_id: @prev_page, word: params[:word]) do %>
+        <button type="button" title="Previous 20 movies" class="page-button">
+          <span class="page-button-text">Prev</span>
+        </button>
+     <% end %>
+      <% end %>
+      <% @pages.each do |page| %>
+      <% if @page == page %>
+        <%= link_to "#{page}", search_path(page_id: page, word: params[:word]), class: "page current_page" %>
+      <% else %>
+        <%= link_to "#{page}", search_path(page_id: page, word: params[:word]), class: "page" %>
+      <% end %>
+    <% end %>
+    <% if params[:page_id].to_i < @movie_total_pages && @movie_total_pages != 1 %>
+      <%= link_to  search_path(page_id: @next_page, word: params[:word]) do %>
+      <button type="button" title="Next 20 movies" class="page-button">
+       <span class="page-button-text">Next</span>
+      </button>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
