@@ -9,7 +9,7 @@
            <% if review.user.image_id? %>
             <img src="<%= review.user.image_id %>" >
           <% else %>
-            <img src="/assets/default.png">
+            <img src="/assets/default.jpg">
           <% end %>
           </div>
 
@@ -81,7 +81,7 @@
       </div>
     </div>
     </div>
-    
+
       <div class="review_index_card_footer">
         <% if user_signed_in? %>
           <div class="review_index_good-bad" id="review-<%= review.id %>_good">
