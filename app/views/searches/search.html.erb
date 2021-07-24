@@ -1,7 +1,7 @@
 <% if params[:genre_id].present? %>
- <h2>人気の映画 - <%= @genre[:name] %></h2>
+ <div class="movie-index-title">人気の映画 - <%= @genre[:name] %></div>
 <% else %>
- <h2>検索ワード - <%= params[:word] %></h2>
+ <div class="movie-index-title">検索ワード - <%= params[:word] %></div>
 <% end %>
 
 <div class="genre_search mt-4 shadow-sm">
