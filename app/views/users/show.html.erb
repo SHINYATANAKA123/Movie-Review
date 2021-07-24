@@ -18,17 +18,17 @@
                 <% end %>
                 <% end %>
               </div>
-        </div>
         <% if user_signed_in? %>
         <% if @user != current_user %>
           <% if @user.followed_by?(current_user) %>
-            <%= link_to 'フォロー済み', user_relationships_path(@user), class:"btn btn-info btn-sm mb-4", method: :delete, data: {confirm: 'フォローを外してもよろしいですか？'} %>
+            <%= link_to 'フォロー済み', user_relationships_path(@user), class:"btn btn-info btn-sm mb-4 text-center", method: :delete, data: {confirm: 'フォローを外してもよろしいですか？'} %>
           <% else %>
-            <%= link_to 'フォローする', user_relationships_path(@user), class:"btn btn-warning btn-sm mb-4", method: :post %>
+            <%= link_to 'フォローする', user_relationships_path(@user), class:"btn btn-warning btn-sm mb-4 text-center", method: :post %>
           <% end %>
         <% end %>
         <% end %>
       </p>
+      </div>
     </div>
     </div>
   </div>
@@ -73,14 +73,12 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-        <%= paginate @user_followers %>
           <div class="flex user_show_container">
             <%= render 'users/users', users: @user_followers %>
           </div>
         <%= paginate @user_followers %>
       </div>
       <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-        <%= paginate @user_followings %>
           <div class=" user_show_container">
             <%= render 'users/users', users: @user_followings %>
           </div>
