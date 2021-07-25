@@ -34,9 +34,9 @@ class SearchesController < ApplicationController
         @movies = Tmdb::Genre.movies(params[:genre_id], page: params[:page_id])
 
     else
-       @movies = Tmdb::Search.movie(params[:word])
+      if params[:word].present?
 
-       @movie_total_pages = Tmdb::Search.movie(params[:word]).total_pages
+        @movie_total_pages = Tmdb::Search.movie(params[:word]).total_pages
         @page = params[:page_id].to_i
 
         if params[:page_id].present?
@@ -62,6 +62,9 @@ class SearchesController < ApplicationController
         end
 
         @movies = Tmdb::Search.movie(params[:word], page: params[:page_id])
+      else
+        redirect_to request.referer, notice: "検索ワードが未入力です"
+      end
 
     end
   end

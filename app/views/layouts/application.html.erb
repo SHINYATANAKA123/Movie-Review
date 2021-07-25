@@ -12,31 +12,17 @@
 
   <body>
     <%= render 'layouts/header' %>
-     <% if request.path.include?("about") %>
-      <div class="about_container text-center">
-       <div  id="alert-message">
-        <% if flash.notice.present? %>
-          <p class="alert alert-success mt-1 auto-hide"><%= flash.notice %></p>
-        <% if flash.alert.present? %>
-          <p class="alert alert-danger mt-1 auto-hide"><%= flash.alert %></p>
-        <% end %>
-        <% end %>
-       </div>
-      </div>
-      <%= yield %>
-    <% else %>
       <div class="container">
         <div id="alert-message">
         <% if flash.notice.present? %>
-          <p class="alert alert-success mt-1 auto-hide"><%= flash.notice %></p>
+          <p class="alert alert-success mt-1 auto-hide  text-center"><%= flash.notice %></p>
         <% if flash.alert.present? %>
-          <p class="alert alert-danger mt-1 auto-hide"><%= flash.alert %></p>
+          <p class="alert alert-danger mt-1 auto-hide  text-center"><%= flash.alert %></p>
         <% end %>
         <% end %>
         </div>
         </div>
         <%= yield %>
-    <% end %>
     <%= render 'layouts/footer' %>
   </body>
 </html>

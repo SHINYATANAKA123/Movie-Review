@@ -8,6 +8,6 @@ class RelationshipsController < ApplicationController
   def destroy
     relationship = current_user.active_relationships.find_by(follower_id: params[:user_id])
     relationship.destroy!
-    redirect_to request.referer, alert: "フォローを解除しました"
+    redirect_to request.referer, alert: 'フォローを解除しました'
   end
 end
