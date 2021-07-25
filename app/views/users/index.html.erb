@@ -2,6 +2,6 @@
     <%= render 'users/user_search', q: @q %>
  </div>
     <%= render 'users/users', users: @users %>
-  <div class="container">
+  <div class="row justify-content-center">
     <%= paginate @users %>
   </div>
