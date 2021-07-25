@@ -12,6 +12,9 @@
 		<div class="content-right">
 			<div class="movie-info-top">
 				<div class="movie-show-title"><%= @movie.title %></div>
+				<% if @movie.title != @movie.original_title %>
+				<div class="movie-show-originaltitle">(<%= @movie.original_title %>)</div>
+				<% end %>
 					<div class="movie-info-date">
 						<span class="movie-release">公開日: <%= @movie.release_date.to_date %></span>
 						<span class="movie-genres"><%= @movie.genres.map(&:name).join(', ') %></span>
