@@ -205,3 +205,10 @@ body * a:hover {
     height: auto;
     opacity: 1;
 }
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    color: white;
+}

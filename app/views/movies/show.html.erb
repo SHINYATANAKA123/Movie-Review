@@ -46,7 +46,7 @@
 
 	    <!-- ボタン・リンククリック後に表示される画面の内容 -->
 	    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	       <div class="modal-dialog modal-dialog-centered" role="document">
+	       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 	  			<div class="modal-content" style="color:black;">
 			    		<%= form_with(model: @review, local: true) do |form| %>
 			    		   <%= form.hidden_field :movie_id, :value => @movie.id %>
@@ -70,11 +70,14 @@
 			    		</div>
 			    		<div class="modal-footer actions">
 			    			<div class="custom-control custom-switch my-4 custom-control custom-radio">
-						      <%= form.check_box :spoiler, checked_value: "true", unchecked_value: "false", class: "custom-control-input" %>
-						      <%= form.label :spoiler, class: "ml-2 custom-control-label" %>
-
-						        <i class="fas fa-exclamation-triangle">ネタバレを含んでいたらチェックをお願いします</i>
-			      			<%= form.submit "書き込む", class: "btn btn-primary"%>
+			    				<div class="spoiler-box">
+							      <%= form.check_box :spoiler, checked_value: "true", unchecked_value: "false", class: "custom-control-input" %>
+							      <%= form.label :spoiler, class: "ml-2 custom-control-label" %>
+							        <i class="fas fa-exclamation-triangle" style="margin-right:60px;">ネタバレを含んでいたらチェックをお願いします</i>
+							     </div>
+							     <div class="review-submit-button">
+			      				<%= form.submit "書き込む", class: "btn btn-primary"%>
+			      			 </div>
 			    		</div>
 			    	<% end %>
 			    	 <script>
