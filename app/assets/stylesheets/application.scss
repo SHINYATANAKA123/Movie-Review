@@ -183,3 +183,8 @@ body * a:hover {
   width: 70px;
   background-color: rgb(3, 37, 65) !important;
 }
+
+.devise_container {
+  @extend .container-fluid;
+  max-width: 576px;
+}

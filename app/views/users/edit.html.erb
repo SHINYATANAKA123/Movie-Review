@@ -2,25 +2,31 @@
   <h2 class="mt-4">登録情報編集 / 退会</h2>
 
  <%= form_with model: @user, local: true do |f| %>
-    <div class="field.form-group">
+    <div class="field form-group">
       <%= f.label :name, "Name(半角英数字, 10文字まで)" %><br />
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => "form-control" %>
     </div>
-
     <div class="field form-group">
       <%= f.label :email, "Email" %><br />
-      <%= f.email_field :email %>
+      <%= f.email_field :email, :class => "form-control" %>
     </div>
 
     <div class="field form-group">
-      <%= f.label :birthday, "生まれ年(任意)" %><br />
+      <%= f.label :birthday, "生まれ年(任意)" %>
+      <%= f.label :sex, "性別(任意)" %>
+    </div>
 
-      <%= f.date_select :birthday, {start_year: 1940, end_year: Time.now.year - 10, date_separator: '/ ', prompt:"--" } %>
+
+    <div class="field form-group form-inline" style="display:block;">
+      <%= f.date_select :birthday, {start_year: 1940, end_year: Time.now.year - 10, date_separator: '/ ', prompt:"--" }, :class => "form-control" %>
+      <%= f.select :sex, User.sexes.keys, :selected=>User.sexes[@user.sex], :class => 'form-control' %>
+
+
     </div>
 
     <div class="field form-group">
       <%= f.label :intro, "自己紹介(任意)" %><br />
-      <%= f.text_area :intro, style:"width: 40%; height: 100px;" %>
+      <%= f.text_area :intro, :class => "form-control" %>
     </div>
 
     <div class="field form-group has-icon">
@@ -34,7 +40,7 @@
          <% end %>
          </div>
          <div class="img-button">
-          <button type="button" class="btn btn-outline-secondary rounded-pill">
+          <button type="button" class="btn btn-outline-secondary rounded-pill form-control">
              <%= f.file_field :image_id, id: :user_img, accept: 'image/jpeg,image/gif,image/png' %>
           </button>
           </div>
@@ -42,8 +48,8 @@
     </div>
     <div class="actions mx-auto row mt-5">
       <div class="col-md"></div>
-      <div class="col-md"><%= f.submit "更新する", class:"btn btn-success" %></div>
-      <div class="col-md"><%= link_to '退会する', user_registration_path(@review), class:"btn btn-danger", method: :delete,
+      <div class="col-md"><%= f.submit "更新する", class:"btn btn-success form-control" %></div>
+      <div class="col-md"><%= link_to '退会する', user_registration_path(@review), class:"btn btn-danger form-control", method: :delete,
       data: {confirm: 'アカウントを削除してもよろしいですか？'} %></div>
       <div class="col-md"></div>
     </div>
