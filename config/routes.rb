@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'reviews/search' => 'reviews#search'
   get 'users/search' => 'users#search'
 
+ post '/homes/guest_sign_in' => 'homes#new_guest'
 
  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

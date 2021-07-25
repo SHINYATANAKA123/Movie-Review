@@ -59,8 +59,9 @@
             <% end %>
           <% end %>
           </ul>
-
-
+          <% unless user_signed_in? %>
+           <%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post, class:"btn btn-success my-2 my-sm-0 guest-button" %>
+          <% end %>
           <%= form_with url: search_path, class: "form-inline my-2 my-lg-0", method: :get, local: true do |f| %>
             <%= f.text_field :word, class: "form-control mr-sm-2", placeholder: '映画を探す' %>
             <%= f.submit "検索", class: "btn btn-outline-success my-2 my-sm-0" %>

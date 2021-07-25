@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :move_to_signed_in
+  before_action :move_to_signed_in, only: [:timeline, :ranking]
 
   def about
   end
@@ -18,6 +18,15 @@ class HomesController < ApplicationController
       @timeline_reviews = current_user.timeline.page(params[:page]).reverse_order
     end
   end
+
+  def new_guest
+    user = User.find_or_create_by!(name: 'guestuser', email: 'guest@example.com', birthday: '1960-01-01', sex: 'その他', intro: 'ゲストユーザーです。よろしくお願いします。好きな監督はデヴィッド・フィンチャーです。') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 
   private
   def move_to_signed_in
