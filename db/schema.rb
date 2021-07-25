@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_123636) do
+ActiveRecord::Schema.define(version: 2021_07_25_130327) do
 
   create_table "bads", force: :cascade do |t|
     t.integer "user_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_07_14_123636) do
     t.string "poster_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "spoiler"
   end
 
   create_table "users", force: :cascade do |t|
