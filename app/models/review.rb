@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
-  has_many :goods
-  has_many :bads
+  has_many :goods, dependent: :destroy
+  has_many :bads, dependent: :destroy
 
   validates :total_score, presence: true
 
