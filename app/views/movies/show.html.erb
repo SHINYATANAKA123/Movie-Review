@@ -1,3 +1,16 @@
+ <div class="container">
+  <div id="alert-message">
+    <% if flash[:review_alert].present? %>
+		  <% flash.each do |key, message| %>
+		    <div class="alert alert-danger mt-1 auto-hide  text-center">
+		      <% message2 = message.gsub(",","<br>") %>
+		      <%= message2.html_safe %>
+		     </div>
+		   <% end %>
+		 <% end %>
+  </div>
+</div>
+
 <section id="detail" style="background-image: url(<%= "https://image.tmdb.org/t/p/original" + "#{@movie.backdrop_path}"%>);">
 	<div class="background-custom">
 	<div class="movie-content">

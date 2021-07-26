@@ -29,8 +29,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to user_path(current_user), notice: "レビューを更新しました"
+    if @review.update(review_params)
+     redirect_to user_path(current_user), notice: "レビューを更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy

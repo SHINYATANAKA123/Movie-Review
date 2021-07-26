@@ -14,15 +14,15 @@
     <%= render 'layouts/header' %>
       <div class="container">
         <div id="alert-message">
-        <% if flash.notice.present? %>
-          <p class="alert alert-success mt-1 auto-hide  text-center"><%= flash.notice %></p>
-        <% if flash.alert.present? %>
-          <p class="alert alert-danger mt-1 auto-hide  text-center"><%= flash.alert %></p>
+          <% if flash.notice.present? %>
+            <p class="alert alert-success mt-1 auto-hide  text-center"><%= flash.notice %></p>
+          <% if flash.alert.present? %>
+            <p class="alert alert-danger mt-1 auto-hide  text-center"><%= flash.alert %></p>
         <% end %>
         <% end %>
         </div>
-        </div>
-        <%= yield %>
+      </div>
+    <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
 </html>
