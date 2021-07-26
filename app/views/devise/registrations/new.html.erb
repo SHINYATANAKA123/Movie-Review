@@ -4,7 +4,7 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-
+<%= render "devise/shared/links" %>
 
     <div class="field form-group">
       <%= f.label :name, "Name(半角英数字, 10文字以内)" %><br />

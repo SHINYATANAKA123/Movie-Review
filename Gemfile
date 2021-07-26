@@ -82,6 +82,12 @@ gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem 'data-confirm-modal'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+
+
 group :production do
   gem 'mysql2'
 end
