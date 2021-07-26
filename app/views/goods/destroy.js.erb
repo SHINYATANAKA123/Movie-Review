@@ -1,5 +1,5 @@
 $("#review-<%=@review.id%>_good").html("<%= j(render partial: 'goods/good-bad', locals: { review: @review }) %>");
-$('#alert-message').html('<div class="alert alert-danger mt-1 auto-hide"><%= @msg %></div>');
+$('#alert-message').html('<div class="alert alert-danger mt-1 text-center auto-hide"><%= @msg %></div>');
 $(function(){
     setTimeout("$('.auto-hide').fadeOut('slow')", 1500)
   });
