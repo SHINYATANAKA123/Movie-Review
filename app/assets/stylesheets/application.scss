@@ -18,6 +18,17 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+/*フッターーの位置を最下に固定*/
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+
+
 body * a {
   text-decoration: none;
   color: black;
@@ -26,6 +37,10 @@ body * a {
 body * a:hover {
   text-decoration: none;
   color: #91969E;
+}
+
+.pagination{
+  justify-content: center;
 }
 
 /*ページネーション自体のデザイン*/
@@ -50,6 +65,13 @@ body * a:hover {
   text-decoration: none;
   color: #ccc;
 }
+
+.navbar-toggler-icon{
+  /* 三本線 */
+  padding-top: 7px;
+  color: #ccc;
+}
+
 
 .guest-button{
   margin-right: 10px;

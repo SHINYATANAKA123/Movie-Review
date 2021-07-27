@@ -15,7 +15,7 @@ class HomesController < ApplicationController
 
   def timeline
     if user_signed_in?
-      @timeline_reviews = current_user.timeline.page(params[:page]).reverse_order
+      @timeline_reviews = current_user.timeline.page(params[:page]).per(10).reverse_order
     end
   end
 

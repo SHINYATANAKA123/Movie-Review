@@ -1,11 +1,6 @@
-<div class="heading">フォローしているユーザーの最新レビュー</div>
-<% if user_signed_in? %>
+<div class="timeline-heading text-center" >フォローしているユーザーの最新レビュー</div>
   <div>
     <%= paginate @timeline_reviews %>
     <%= render 'layouts/timeline', timeline_reviews: @timeline_reviews %>
     <%= paginate @timeline_reviews %>
   </div>
-<% else %>
-  <div class="text-center">| ログインしてください</div>
-<% end %>
-

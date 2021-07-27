@@ -1,6 +1,9 @@
-
+<div class="timeline-heading text-center" >すべてのユーザーの最新レビュー</div>
+<div class="container">
+  <%= paginate @reviews %>
+</div>
     <% @reviews.each do |review| %>
-    <div class="container">
+    <div class="container" style="margin-top:60px;">
      <div class="main posts-index">
       <div class="posts-index-item">
         <div class="review-main">
@@ -123,7 +126,7 @@
   </div>
 </div>
 <% end %>
-<div class="row justify-content-center">
+<div class="container">
   <%= paginate @reviews %>
 </div>
 
