@@ -36,7 +36,7 @@
          <% if @user.image_id? %>
             <%= image_tag @user.image_id.url, id: :img_prev %>
          <% else %>
-            <%= image_tag "/assets/no_profile_image.jpg", id: :img_prev %>
+            <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
          <% end %>
          </div>
          <div class="img-button">
@@ -49,8 +49,7 @@
     <div class="actions mx-auto row mt-5">
       <div class="col-md"></div>
       <div class="col-md"><%= f.submit "更新する", class:"btn btn-success form-control" %></div>
-      <div class="col-md"><%= link_to '退会する', user_registration_path(@review), class:"btn btn-danger form-control", method: :delete,
-      data: {confirm: 'アカウントを削除してもよろしいですか？'} %></div>
+      <div class="col-md"><%= link_to '退会する', user_registration_path(@user), class:"btn btn-danger form-control", method: :delete,data: {confirm: 'アカウントを削除してもよろしいですか？'} %></div>
       <div class="col-md"></div>
     </div>
   <% end %>

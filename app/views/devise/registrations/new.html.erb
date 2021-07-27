@@ -73,7 +73,7 @@
          <% if @user.image_id? %>
             <%= image_tag @user.image_id.url, id: :img_prev %>
          <% else %>
-            <%= image_tag "/assets/default.jpg", id: :img_prev %>
+           <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
          <% end %>
          </div>
          <div class="img-button">
