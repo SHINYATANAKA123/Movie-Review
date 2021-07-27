@@ -1,18 +1,37 @@
 <div class="devise_container text-center">
   <%= devise_error_messages %>
-  <h2 class="mt-4">アカウント登録</h2>
+  <h4 class="mt-4">アカウント登録</h4>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-<%= render "devise/shared/links" %>
+  <div class="SNS-login">
+    <div class="facebook SNS">
+        <%= link_to user_facebook_omniauth_authorize_path, method: :post, class:"facebook_log_in" do %>
+          <i class="fab fa-facebook "></i><b> Facebookでで登録・ログイン</b>
+        <% end %>
+      </div>
+
+
+      <div class="google SNS">
+        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, class:"google_log_in" do %>
+          <i class="fab fa-google "></i><b> Googleでで登録・ログイン</b>
+        <% end %>
+      </div>
+
+      <div class="twitter SNS">
+        <%= link_to user_twitter_omniauth_authorize_path, method: :post, class:"twitter_log_in" do %>
+          <i class="fab fa-twitter "></i><b> Twitterで登録・ログイン</b>
+        <% end %>
+      </div>
+  </div>
 
     <div class="field form-group">
-      <%= f.label :name, "Name(半角英数字, 10文字以内)" %><br />
+      <%= f.label :name, "名前(20文字以内)" %><br />
       <%= f.text_field :name, autocomplete: "name", placeholder: "(例)tarou", :class => "form-control" %>
     </div>
 
     <div class="field form-group">
-      <%= f.label :email, "Email" %><br />
+      <%= f.label :email, "メールアドレス" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "(例)tarou@example.com", :class => "form-control" %>
     </div>
 

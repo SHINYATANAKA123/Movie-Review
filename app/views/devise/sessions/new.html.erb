@@ -29,7 +29,26 @@
   </div>
 
   <h4 class="mt-1 mb-3 bg-gray text-center ">会員登録がお済みでない方</h4>
-  <div style="margin:auto">
-    <%= render "devise/shared/links" %>
+  
+  <div class="SNS-login">
+    <div class="facebook SNS">
+        <%= link_to user_facebook_omniauth_authorize_path, method: :post, class:"facebook_log_in" do %>
+          <i class="fab fa-facebook "></i><b> Facebookでで登録・ログイン</b>
+        <% end %>
+      </div>
+
+
+      <div class="google SNS">
+        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, class:"google_log_in" do %>
+          <i class="fab fa-google "></i><b> Googleでで登録・ログイン</b>
+        <% end %>
+      </div>
+
+      <div class="twitter SNS">
+        <%= link_to user_twitter_omniauth_authorize_path, method: :post, class:"twitter_log_in" do %>
+          <i class="fab fa-twitter "></i><b> Twitterで登録・ログイン</b>
+        <% end %>
+      </div>
   </div>
+  
 </div>
