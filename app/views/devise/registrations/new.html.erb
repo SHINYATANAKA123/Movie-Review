@@ -4,12 +4,7 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div class="session_google">
-  <%= link_to user_google_oauth2_omniauth_authorize_path, method: :get, class:"google_session_new" do %>
-    <i class="fab fa-google fa-2x"></i><b>Sign in with Google </b>
-  <% end %>
-</div>
-
+<%= render "devise/shared/links" %>
 
     <div class="field form-group">
       <%= f.label :name, "Name(半角英数字, 10文字以内)" %><br />
@@ -59,7 +54,7 @@
          <% if @user.image_id? %>
             <%= image_tag @user.image_id.url, id: :img_prev %>
          <% else %>
-            <%= image_tag "/assets/no_profile_image.jpg", id: :img_prev %>
+            <%= image_tag "/assets/default.jpg", id: :img_prev %>
          <% end %>
          </div>
          <div class="img-button">

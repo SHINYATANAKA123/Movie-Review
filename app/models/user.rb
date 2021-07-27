@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :image_id, ImageUploader
 
-  validates :name, uniqueness: :true, length: { maximum: 10 },
-                  format: { with: /\A[a-zA-Z0-9]+\z/, message: "を半角英数字で入力してください"}
+  validates :name, uniqueness: :true, length: { maximum: 20 }
+
   enum sex: { '--': 0, 男性: 1, 女性: 2, その他: 9 }
 
   has_many :goods, dependent: :destroy
@@ -26,9 +26,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
 
-  def self.from_omniauth(auth)
+  def self.form_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
+      user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]
     end
   end
@@ -44,6 +45,6 @@ class User < ApplicationRecord
   def self.follower_ranks
     User.find(Relationship.group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
   end
-
+ENV['HOST']
 
 end

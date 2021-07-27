@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
             {id:27, name: "ホラー"}, {id:10402, name: "音楽"}, {id:9648, name: "ミステリー"}, {id:10749, name: "ロマンス"}, {id:878, name: "SF"},
             {id:53, name: "スリラー"}, {id:10752, name: "戦争"}, {id:37, name: "西部劇"}]
 
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :birthday, :image_id, :intro])
