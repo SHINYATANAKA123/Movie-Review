@@ -43,6 +43,7 @@
         <% end %>
       </div>
       <% if user.intro.present? %>
+      <%= link_to user_path(user) do %>
       <div class="user-intro">
     　  <div>
     　     <%= safe_join(user.intro.truncate(50).split("\n"),tag(:br)) %>
@@ -51,6 +52,7 @@
               <% end %>
     　  </div>
     　</div>
+    　<% end %>
     　<% end %>
     </div>
   </div>
