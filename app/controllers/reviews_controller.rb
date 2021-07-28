@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit]
 
 
   def index
@@ -47,6 +48,16 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def ensure_correct_user
+    @review = Review.find(params[:id])
+    if @review.user != current_user
+      flash[:notice] = "このページにはアクセスできません"
+      redirect_back(fallback_location: user_path(current_user))
+    else
+      render :edit
+    end
+  end
 
   def review_params
     params.require(:review).permit(:movie_id, :title, :poster_path, :user_id, :total_score, :body, :spoiler)

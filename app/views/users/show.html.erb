@@ -17,7 +17,7 @@
                   <p class="user-old"><%= age(@user.birthday) %>歳</p>
                  <% end %>
                  <% if @user.intro.present? %>
-                <p class="user-intro"><%= safe_join(@user.intro.split("\n"),tag(:br))%></p>
+                <p class="user-show-intro"><%= safe_join(@user.intro.split("\n"),tag(:br))%></p>
                 <% end %>
                 <p><%= @user.email %></p>
                 <% if user_signed_in? %>
