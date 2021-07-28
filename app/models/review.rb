@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
-  has_many :goods
-  has_many :bads
+  has_many :goods, dependent: :destroy
+  has_many :bads, dependent: :destroy
 
   validates :total_score, presence: true
 
@@ -26,7 +26,7 @@ class Review < ApplicationRecord
   end
 
   def self.count_ranks
-    Review.group(:movie_id, :title, :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(6)
+    Review.group(:movie_id, :title, :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(3)
   end
 
 end

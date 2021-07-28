@@ -6,8 +6,6 @@ class InterestsController < ApplicationController
     @interest = Interest.new(title: a['title'], poster_path: a['poster_path'], movie_id: a['id'], user_id: current_user.id)
     if @interest.save
       redirect_to request.referer, notice: "観たいリストに追加しました"
-    else
-      redirect_back(fallback_location: root_path)
     end
   end
 

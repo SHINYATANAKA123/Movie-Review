@@ -2,8 +2,36 @@ class MoviesController < ApplicationController
 
 
   def index
-    @popular_movie = Tmdb::Movie.popular
+
     @genres = GENRES
+
+    @movie_total_pages = Tmdb::Movie.popular.total_pages
+    @page = params[:page_id].to_i
+
+    if params[:page_id].present?
+      @next_page = @page + 1
+    else
+      @next_page = @page + 2
+    end
+
+    if params[:page_id].to_i == 1
+      @prev_page = 1
+    else
+      @prev_page = @page - 1
+    end
+
+    if @movie_total_pages > 10
+      first = [1,  @page - 4].max
+      @first = [first, @movie_total_pages - 9].min
+      last  = [10, @page + 5].max
+      @last  = [last, @movie_total_pages].min
+      @pages = (@first..@last).each
+    else
+      @pages = [*1..@last]
+    end
+
+    @popular_movie = Tmdb::Movie.popular(page: params[:page_id])
+
   end
 
 

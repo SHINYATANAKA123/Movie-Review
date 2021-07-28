@@ -1,0 +1,9 @@
+<div class="container">
+  <div id="alert-message">
+    <% if object.errors.any? %>
+      <% object.errors.full_messages.each do |message| %>
+        <p class="alert alert-danger mt-1 auto-hide  text-center"><%= message %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

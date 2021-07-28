@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.timeline-heading{
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.9;
+  word-wrap: break-word;
+  margin: 30px;
+}
 
 .movie-count-card{
   margin-top: 20px;

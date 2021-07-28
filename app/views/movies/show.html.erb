@@ -1,3 +1,16 @@
+ <div class="container">
+  <div id="alert-message">
+    <% if flash[:review_alert].present? %>
+		  <% flash.each do |key, message| %>
+		    <div class="alert alert-danger mt-1 auto-hide  text-center">
+		      <% message2 = message.gsub(",","<br>") %>
+		      <%= message2.html_safe %>
+		     </div>
+		   <% end %>
+		 <% end %>
+  </div>
+</div>
+
 <section id="detail" style="background-image: url(<%= "https://image.tmdb.org/t/p/original" + "#{@movie.backdrop_path}"%>);">
 	<div class="background-custom">
 	<div class="movie-content">
@@ -12,6 +25,9 @@
 		<div class="content-right">
 			<div class="movie-info-top">
 				<div class="movie-show-title"><%= @movie.title %></div>
+				<% if @movie.title != @movie.original_title %>
+				<div class="movie-show-originaltitle">(<%= @movie.original_title %>)</div>
+				<% end %>
 					<div class="movie-info-date">
 						<span class="movie-release">公開日: <%= @movie.release_date.to_date %></span>
 						<span class="movie-genres"><%= @movie.genres.map(&:name).join(', ') %></span>
@@ -43,14 +59,14 @@
 
 	    <!-- ボタン・リンククリック後に表示される画面の内容 -->
 	    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	       <div class="modal-dialog" role="document">
-	  			<div class="modal-content">
+	       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+	  			<div class="modal-content" style="color:black;">
 			    		<%= form_with(model: @review, local: true) do |form| %>
 			    		   <%= form.hidden_field :movie_id, :value => @movie.id %>
 		   				   <%= form.hidden_field :title, :value => @movie.title %>
 						   <%= form.hidden_field :poster_path, :value => @movie.poster_path %>
 			    			<div class="modal-header">
-			      			<h5 class="modal-title">レビューする</h5>
+			      			<div class="modal-title">レビューする</div>
 			      			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			        			<span aria-hidden="true">&times;</span>
 			      			</button>
@@ -66,7 +82,15 @@
 			      		</div>
 			    		</div>
 			    		<div class="modal-footer actions">
-			      			<%= form.submit "書き込む", class: "btn btn-primary"%>
+			    			<div class="custom-control custom-switch my-4 custom-control custom-radio">
+			    				<div class="spoiler-box">
+							      <%= form.check_box :spoiler, checked_value: "true", unchecked_value: "false", class: "custom-control-input" %>
+							      <%= form.label :spoiler, class: "ml-2 custom-control-label" %>
+							        <i class="fas fa-exclamation-triangle" style="margin-right:60px;">ネタバレを含んでいたらチェックをお願いします</i>
+							     </div>
+							     <div class="review-submit-button">
+			      				<%= form.submit "書き込む", class: "btn btn-primary"%>
+			      			 </div>
 			    		</div>
 			    	<% end %>
 			    	 <script>
@@ -100,7 +124,7 @@
         　<% if review.user.image_id? %>
             <img src="<%= review.user.image_id %>" >
           <% else %>
-            <img src="/assets/default.png">
+            <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
           <% end %>
         </div>
         <div class="post-right">
@@ -127,9 +151,37 @@
           	</div>
           	<div class="rate-number"><%= review.total_score %></div>
           </div>
-          <%= link_to "/reviews/#{review.id}" do %>
-          <%= safe_join(review.body.split("\n"),tag(:br)) %>
+
+
+          <% if review.spoiler.present? %>
+            <div class="hidden_box">
+              <label for="label/#{review.id}">
+                <i class="fas fa-exclamation-triangle">ネタバレを表示</i>
+              </label>
+              <input type="checkbox" id="label/#{review.id}"/>
+              <div class="hidden_show">
+                <%= link_to "/reviews/#{review.id}" do %>
+                 <div class="review-text">
+                   <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
+                    <% if review.body.size >= 300 %>
+                      <p><<<続きを読む</p>
+                    <% end %>
+                 </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to "/reviews/#{review.id}" do %>
+             <div class="review-text">
+               <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
+                <% if review.body.size >= 300 %>
+                  <p><<<続きを読む</p>
+                <% end %>
+             </div>
+            <% end %>
           <% end %>
+
+
 
          <div class="review_index_card_footer">
          <% if user_signed_in? %>
@@ -141,7 +193,7 @@
       <% if review.user_id == current_user.id %>
         <div class="post-menus">
           <%= link_to("編集", "/reviews/#{review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
-          <%= link_to("削除", "/reviews/#{review.id}", {method: "delete"}) %>
+          <%= link_to "削除", "/reviews/#{review.id}", method: :delete, data: {confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'}, title: '削除確認' %>
         </div>
       <% end %>
       <% end %>
@@ -153,3 +205,9 @@
 </div>
 <% end %>
   </section>
+
+  <script>
+  $(function() {
+    setTimeout("$('.auto-hide').fadeOut('slow')", 1500);
+  });
+</script>

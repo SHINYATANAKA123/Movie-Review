@@ -9,14 +9,16 @@
                   <% if @user.image_id? %>
                     <img src="<%= @user.image_id %>" >
                   <% else %>
-                    <img src="/assets/default.png">
+                    <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
                   <% end %>
                 </div>
                 <div class="user-name"><%= @user.name %></div>
                  <% if @user.birthday.present? %>
                   <p class="user-old"><%= age(@user.birthday) %>歳</p>
                  <% end %>
+                 <% if @user.intro.present? %>
                 <p class="user-intro"><%= safe_join(@user.intro.split("\n"),tag(:br))%></p>
+                <% end %>
                 <p><%= @user.email %></p>
                 <% if user_signed_in? %>
                 <% if @user.id == current_user.id %>

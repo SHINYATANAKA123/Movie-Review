@@ -10,7 +10,7 @@
            <% if review.user.image_id? %>
             <img src="<%= review.user.image_id %>" >
           <% else %>
-            <img src="/assets/default.png">
+            <%= image_tag asset_path("default.jpg", alt: "ユーザー画像") %>
           <% end %>
           </div>
 
@@ -40,14 +40,35 @@
           	</div>
           	<div class="rate-number"><%= review.total_score %></div>
           </div>
-          <%= link_to "/reviews/#{review.id}" do %>
-           <div class="review-text">
-             <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
-              <% if review.body.size >= 300 %>
-                <p><<<続きを読む</p>
-              <% end %>
-           </div>
+
+          <% if review.spoiler.present? %>
+            <div class="hidden_box">
+              <label for="label/#{review.id}">
+                <i class="fas fa-exclamation-triangle">ネタバレを表示</i>
+              </label>
+              <input type="checkbox" id="label/#{review.id}"/>
+              <div class="hidden_show">
+                <%= link_to "/reviews/#{review.id}" do %>
+                 <div class="review-text">
+                   <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
+                    <% if review.body.size >= 300 %>
+                      <p><<<続きを読む</p>
+                    <% end %>
+                 </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to "/reviews/#{review.id}" do %>
+             <div class="review-text">
+               <%= safe_join(review.body.truncate(300).split("\n"),tag(:br)) %>
+                <% if review.body.size >= 300 %>
+                  <p><<<続きを読む</p>
+                <% end %>
+             </div>
+            <% end %>
           <% end %>
+
          </div>
          <div class="review-right">
           <div class="review-poster">
@@ -96,7 +117,7 @@
       <% if review.user_id == current_user.id %>
         <div class="post-menus">
           <%= link_to("編集", "/reviews/#{review.id}/edit", {data: {toggle: "modal"}, data: {target: "#testModal"}}) %>
-          <%= link_to("削除", "/reviews/#{review.id}", {method: "delete"}) %>
+          <%= link_to "削除", "/reviews/#{review.id}", method: :delete, data: {confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'}, title: '削除確認' %>
         </div>
       <% end %>
     <% end %>
