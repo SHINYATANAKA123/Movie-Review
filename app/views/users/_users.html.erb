@@ -33,15 +33,16 @@
       </div>
       <div class="follow-box">
         <% if user_signed_in? %>
-        <% if @user != current_user %>
+        <% if user != current_user %>
           <% if user.followed_by?(current_user) %>
-            <%= link_to 'フォロー中', user_relationships_path(user), class:"btn btn-info btn-sm mb-4", method: :delete, data: {confirm: 'フォローを外してもよろしいですか？'} %>
+            <%= link_to 'フォロー中', user_relationships_path(user), class:"btn btn-info btn-sm mb-4", method: :delete, data: {confirm: 'フォローを外してもよろしいですか？',cancel: 'やめる',commit: 'フォローを外す'}, title: '確認画面' %>
           <% else %>
             <%= link_to 'フォローする', user_relationships_path(user), class:"btn btn-warning btn-sm mb-4", method: :post %>
           <% end %>
         <% end %>
         <% end %>
       </div>
+      <% if user.intro.present? %>
       <div class="user-intro">
     　  <div>
     　     <%= safe_join(user.intro.truncate(50).split("\n"),tag(:br)) %>
@@ -50,6 +51,7 @@
               <% end %>
     　  </div>
     　</div>
+    　<% end %>
     </div>
   </div>
 </div>

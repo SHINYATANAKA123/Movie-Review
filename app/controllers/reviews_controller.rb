@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
 
   def index
-    @reviews = Review.all.order(created_at: :desc)
+    @reviews = Review.all.page(params[:page]).per(10).reverse_order
   end
 
   def show
@@ -29,8 +29,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to user_path(current_user), notice: "レビューを更新しました"
+    if @review.update(review_params)
+     redirect_to user_path(current_user), notice: "レビューを更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -46,7 +49,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:movie_id, :title, :poster_path, :user_id, :total_score, :body)
+    params.require(:review).permit(:movie_id, :title, :poster_path, :user_id, :total_score, :body, :spoiler)
   end
 
 

@@ -1,3 +1,4 @@
+<%= render 'layouts/error_messages', object: @review %>
 <div class="container" style="padding-top: 80px;">
 	<div class="modal-content">
 			    		<%= form_with(model: @review, local: true) do |form| %>
@@ -18,7 +19,15 @@
 			      		</div>
 			    		</div>
 			    		<div class="modal-footer actions">
-			      			<%= form.submit "更新する", class: "btn btn-primary"%>
+			    				<div class="custom-control custom-switch my-4 custom-control custom-radio">
+			    				<div class="spoiler-box">
+							      <%= form.check_box :spoiler, checked_value: "true", unchecked_value: "false", class: "custom-control-input" %>
+							      <%= form.label :spoiler, class: "ml-2 custom-control-label" %>
+							        <i class="fas fa-exclamation-triangle" style="margin-right:60px;">ネタバレを含んでいたらチェックをお願いします</i>
+							     </div>
+							     <div class="review-submit-button">
+			      				<%= form.submit "更新する", class: "btn btn-primary"%>
+			      			 </div>
 			    		</div>
 			    	<% end %>
 			    	 <script>

@@ -1,4 +1,4 @@
-<h2>人気の映画 - <%= @popular_movie.total_results %> movies</h2>
+<div class="movie-index-title">人気の映画 - <%= @popular_movie.total_results %> 作品</div>
 <div class="genre_search mt-4 shadow-sm">
   <div class="search_heading">ジャンルで映画検索</div>
   <div class="search_items">
@@ -56,5 +56,28 @@
 </div>
 
 
+<div class="container  pagenation" >
+  <div class="row justify-content-center">
+   <% if params[:page_id].present? %>
+    <%= link_to  root_path(page_id: @prev_page) do %>
+      <button type="button" title="Previous 20 movies" class="page-button">
+        <span class="page-button-text">Prev</span>
+      </button>
+   <% end %>
+    <% end %>
+    <% @pages.each do |page| %>
+    <% if @page == page %>
+      <%= link_to "#{page}", root_path(page_id: page), class: "page current_page" %>
+    <% else %>
+      <%= link_to "#{page}", root_path(page_id: page), class: "page" %>
+    <% end %>
+  <% end %>
+  <%= link_to  root_path(page_id: @next_page) do %>
+  <button type="button" title="Next 20 movies" class="page-button">
+   <span class="page-button-text">Next</span>
+  </button>
+  <% end %>
+  </div>
+</div>
 
 

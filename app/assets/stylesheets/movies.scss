@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.movie-index-title{
+  margin-left: 40px;
+  margin-top: 30px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.search_heading{
+  margin-left: 40px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.movies-list{
+  margin-bottom: 20px;
+}
+
 ul.horizontal-list {
 	margin-top: 30px;
 	overflow-x: auto;
@@ -17,7 +34,7 @@ ul.horizontal-list {
 
 .index-cards-img{
 	height: 375px;
-	width: 250px;
+	width: 248px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -30,8 +47,9 @@ ul.horizontal-list {
 .movie-title{
 	width: 230px;
 	word-wrap: break-word;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 600;
+	white-space: normal;
 }
 
 #index-cards-text{
@@ -110,18 +128,17 @@ ul.horizontal-list {
   background-image: linear-gradient(to right, rgba(15, 70, 69, 0.6) 150px, rgba(27, 93, 92, 0.84) 100%) !important;
 }
 
-.content-left{
 
-}
 
 .content-left img{
   height: 525px;
   width: 350px;
+  margin-left: 45px;
   border-radius: 10px;
 }
 
 .content-right{
-  padding-left: 40px;
+  padding-left: 60px;
 }
 
 .movie-show-title {
@@ -130,6 +147,13 @@ ul.horizontal-list {
     font-size: 25px;
     line-height: 40px;
     height: 40px;
+    display: contents;
+}
+
+.movie-show-originaltitle{
+  display: inline-block;
+  padding-left: 10px;
+  font-weight: 150;
 }
 
 .movie-info-date{
@@ -137,7 +161,7 @@ ul.horizontal-list {
     padding-left: 5px;
     margin-bottom: 20px;
     line-height: 24px;
-    font-weight: 250;
+    font-weight: 150;
 }
 
 
@@ -169,7 +193,7 @@ ul.horizontal-list {
 .movie-overview{
   max-height: 180px;
   margin-bottom: 30px;
-  width: 85%;
+  width: 95%;
 }
 
 .overview-title{
@@ -180,7 +204,8 @@ ul.horizontal-list {
 
 .overview-text{
   padding-left: 20px;
-  padding-right: 20px;
+  font-size: 18px;
+  font-weight: 200;
 }
 
 .posts-show-item {
@@ -205,6 +230,15 @@ ul.horizontal-list {
   box-shadow: 0 2px 6px #c1ced7;
   vertical-align: middle;
   object-fit: cover;
+}
+
+.spoiler-box{
+  text-align: left;
+  display: inline-block;
+}
+
+.review-submit-button{
+  display: inline-block;
 }
 
 .posts-show-item .post-user-name a {

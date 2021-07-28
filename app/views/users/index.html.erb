@@ -1,6 +1,9 @@
  <div class="card container shadow-sm col-sm-4 text-center" style="margin-top: 50px;">
     <%= render 'users/user_search', q: @q %>
  </div>
+  <div class="container" style="margin-top: 50px;">
+    <%= paginate @users %>
+  </div>
     <%= render 'users/users', users: @users %>
   <div class="container">
     <%= paginate @users %>
