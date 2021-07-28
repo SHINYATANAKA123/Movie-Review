@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :ensure_correct_user, only: [:edit]
 
 
   def index
@@ -44,6 +45,20 @@ class UsersController < ApplicationController
 
 
   private
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user != current_user
+      flash[:notice] = "このページにはアクセスできません"
+      redirect_back(fallback_location: user_path(current_user))
+    elsif @user.name == "guestuser"
+      redirect_to request.referer
+      flash[:notice] = "ゲストユーザーは編集機能を使用できません"
+    else
+      render :edit
+    end
+  end
+
 
   def user_params
       params.require(:user).permit(:name, :image_id, :email, :birthday, :sex, :intro)
