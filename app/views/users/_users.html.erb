@@ -25,11 +25,11 @@
     <div class="card-text user-data-count">
       <div class="count-box">
         <span class="card-label">Followers</span>
-        <span class="card-count"><%= user.active_relationships.count %></span>
+        <span class="card-count"><%= user.passive_relationships.count %></span>
       </div>
       <div class="count-box">
         <span class="card-label">Followings</span>
-        <span class="card-count"><%= user.passive_relationships.count %></span>
+        <span class="card-count"><%= user.active_relationships.count %></span>
       </div>
       <div class="follow-box">
         <% if user_signed_in? %>
