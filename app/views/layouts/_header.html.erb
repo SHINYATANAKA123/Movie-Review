@@ -16,7 +16,7 @@
            <li class="nav-item">
             <%= link_to reviews_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="far fa-comments faa-wrench"></i>
-            <span>レビューを探す</span>
+            <span>レビュー</span>
             <% end %>
           </li>
            <li class="nav-item">
@@ -24,14 +24,14 @@
              <i class="fas fa-user faa-wrench"></i>
             <span>ユーザーを探す</span>
             <% end %>
+
+          <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to ranking_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-crown faa-wrench"></i>
             <span>ランキング</span>
             <% end %>
           </li>
-
-          <% if user_signed_in? %>
            <li class="nav-item">
             <%= link_to timeline_path, class: 'nav-link faa-parent animated-hover header-text' do %>
              <i class="fas fa-list-ul faa-wrench"></i>
