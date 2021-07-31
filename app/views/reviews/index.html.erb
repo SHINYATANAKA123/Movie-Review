@@ -89,9 +89,9 @@
         <% if user_signed_in? %>
           <% if current_user.interests.find_by(movie_id: review.movie_id).present? %>
           <div class="review-cards-bottom"><%= link_to "追加済み", movie_interest_path(review.movie_id), class:"btn btn-info btn-sm", method: :delete %></div>
-        <% else %>
+          <% else %>
           <div class="review-cards-bottom"><%= link_to "観たい！", movie_interest_path(movie_id: review.movie_id, title: review.title, poster_path: review.poster_path), class:"btn btn-warning btn-sm", method: :post %></div>
-        <% end %>
+          <% end %>
 
   			<% if current_user.reviews.find_by(movie_id: review.movie_id).present? %>
     			<%= link_to movie_path(review.movie_id) do %>
