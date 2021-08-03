@@ -11,7 +11,7 @@
  </div>
 <div class="container-fluid">
   <ul class="horizontal-list">
-    <ul class="movies-list">
+    <div class="movies-list">
     	<% @popular_movie.results.each do |movie| %>
     		<% if movie %>
     			<div class="movie-count-card index-cards">
@@ -49,10 +49,8 @@
             </div>
     		<% end %>
     	<% end %>
-    </ul>
+    </div>
   </ul>
-  <ul>
-</ul>
 </div>
 
 
