@@ -93,6 +93,9 @@ gem "omniauth-rails_csrf_protection"
 
 gem 'faker'
 
+gem 'rubocop', require:false
+gem 'rubocop-rails', require:false
+
 
 
 group :production do
