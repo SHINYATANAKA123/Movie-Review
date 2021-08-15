@@ -1,6 +1,5 @@
 module MoviesHelper
   def image_url
-     @movie.poster_path
+    @movie.poster_path
   end
-
 end

@@ -30,21 +30,20 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.name = auth.info.name
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 
   def followed_by?(user)
-    passive_relationships.where(following_id: user.id).exists? #exists?の方がいいかも
+    passive_relationships.where(following_id: user.id).exists? # exists?の方がいいかも
   end
 
   def timeline
-    Review.where("user_id IN (?)", following_ids)
+    Review.where('user_id IN (?)', following_ids)
   end
 
   def self.follower_ranks
     User.find(Relationship.group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
   end
-ENV['HOST']
-
+  ENV['HOST']
 end
