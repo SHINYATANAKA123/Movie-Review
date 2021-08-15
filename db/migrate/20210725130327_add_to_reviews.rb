@@ -1,5 +1,5 @@
 class AddToReviews < ActiveRecord::Migration[5.2]
   def change
-     add_column :reviews, :spoiler, :boolean
+    add_column :reviews, :spoiler, :boolean
   end
 end
