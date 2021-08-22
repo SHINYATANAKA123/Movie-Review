@@ -277,3 +277,72 @@ body * a:hover {
   font-size: 30px;
   font-weight: 300;
 }
+
+
+@media screen and (max-width: 990px) {
+ .header-text{
+    text-decoration: none;
+    color: #ccc;
+    font-size: 60px;
+}
+
+ .movie-index-title {
+    margin-left: 40px;
+    margin-top: 30px;
+    font-weight: 800;
+    font-size: 48px;
+}
+
+ .search_heading {
+    margin-left: 40px;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+ .genre-button {
+    font-family: Oswald, sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: white;
+    padding: 8px 12px;
+    border: 2px solid #032541;
+    border-radius: 1em 0.25em;
+    margin-top: 0.6em;
+    margin-right: 0.6em;
+    outline: none;
+    background-color: #032541 !important;
+}
+
+ .index-cards-img {
+    height: 600px;
+    width: 397px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+ .index-cards {
+    width: 397px;
+    height: 800px;
+    margin-right: 50px;
+}
+
+ .index-cards {
+    width: 397px;
+    height: 800px;
+    margin-right: 50px;
+}
+
+ #index-cards-text {
+    font-size: 20px;
+    position: absolute;
+    font-weight: 400;
+    right: 8px;
+    bottom: 55px;
+    display: flex;
+}
+
+ .pagenation {
+    margin-top: 80px;
+    font-size: 55px;
+}
+}
