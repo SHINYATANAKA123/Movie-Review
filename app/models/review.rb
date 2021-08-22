@@ -7,7 +7,7 @@ class Review < ApplicationRecord
 
   validates :body, length: { maximum: 2000 }
 
-   # goodsの中に、引数で渡されたuserのidを持つレコードがあるかの判定をする
+  # goodsの中に、引数で渡されたuserのidを持つレコードがあるかの判定をする
   def good_by?(user)
     goods.where(user_id: user.id).present? # exists?の方がいいかも
   end
@@ -26,7 +26,7 @@ class Review < ApplicationRecord
   end
 
   def self.count_ranks
-    Review.group(:movie_id, :title, :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(3)
+    Review.group(:movie_id, :title,
+                 :poster_path).select('reviews.movie_id, reviews.title, reviews.poster_path, count(movie_id) as review_count').order('review_count desc').limit(3)
   end
-
 end

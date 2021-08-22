@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit]
 
-
   def index
     @reviews = Review.all.page(params[:page]).per(10).reverse_order
   end
@@ -18,7 +17,7 @@ class ReviewsController < ApplicationController
     if @review.valid?
       if review_count < 1
         @review.save
-        redirect_to request.referer, notice: "レビューを保存しました"
+        redirect_to request.referer, notice: 'レビューを保存しました'
 
       end
     else
@@ -31,7 +30,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
-     redirect_to user_path(current_user), notice: "レビューを更新しました"
+      redirect_to user_path(current_user), notice: 'レビューを更新しました'
     else
       render :edit
     end
@@ -40,11 +39,11 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find_by(id: params[:id])
     @review.destroy
-    redirect_to root_path, alert: "レビューを削除しました"
+    redirect_to root_path, alert: 'レビューを削除しました'
   end
 
   def edit
-      @review = Review.find_by(id: params[:id])
+    @review = Review.find_by(id: params[:id])
   end
 
   private
@@ -52,7 +51,7 @@ class ReviewsController < ApplicationController
   def ensure_correct_user
     @review = Review.find(params[:id])
     if @review.user != current_user
-      flash[:notice] = "このページにはアクセスできません"
+      flash[:notice] = 'このページにはアクセスできません'
       redirect_back(fallback_location: user_path(current_user))
     else
       render :edit
@@ -62,6 +61,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:movie_id, :title, :poster_path, :user_id, :total_score, :body, :spoiler)
   end
-
-
 end
